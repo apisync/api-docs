@@ -99,7 +99,7 @@ Todos clientes possuem uma chave única para acesso à API chamada
 painel de administração. Ela é secreta e você não deve compartilhá-la com
 ninguém.
 
-O Aust espera que você inclua sua API token em todas as requisições em
+O ApiSync espera que você inclua sua API token em todas as requisições em
 um cabeçalho chamado `Authorization`, como no exemplo a seguir:
 
 `curl -H "Token: Bearer $API_TOKEN" "https://api.apisync.io/inventory-items"`
