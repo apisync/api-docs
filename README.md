@@ -23,3 +23,14 @@ bundle exec middleman server
 ```
 
 You can now see the docs at http://localhost:4567. Whoa! That was fast!
+
+### Deploying
+
+You have to define the ENV variable `APISYNC_DEPLOY_USER`. Ask an admin for
+the value.
+
+Then run (given you have access to the server)
+
+```
+bundle exec cap production deploy
+```

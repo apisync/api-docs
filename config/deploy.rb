@@ -24,7 +24,8 @@ after "deploy:updated", "deploy:build"
 namespace :deploy do
   task :build do
     on roles(:web) do
-      within "/var/www/apisync_api_docs/current" do
+      within release_path do
+        execute :pwd
         execute :bundle, :exec, :middleman, :build
       end
     end
