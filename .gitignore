@@ -1,3 +1,4 @@
+log/capistrano.log
 *.gem
 *.rbc
 .bundle

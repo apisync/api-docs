@@ -6,7 +6,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - ruby
 
 toc_footers:
-  - <a href='https://domain.com'>Inscrever-se</a>
+  - <a href='https://apisync.io'>Inscrever-se</a>
 
 includes:
   - inventory_items
@@ -24,7 +24,7 @@ anúncios e mais.
 Utilizamos o formato <a href="http://jsonapi.org" target="jsonapi">JSON:API</a>
 em todos os endpoints.
 
-> O endereço da API é https://api.domain.com
+> O endereço da API é https://api.apisync.io
 
 <aside class="warning">
   A API está em desenvolvimento.
@@ -34,7 +34,7 @@ em todos os endpoints.
 
 Vamos omitir o domínio quando especificando. Por exemplo,
 `GET /inventory-items` significa uma requisição HTTP GET para
-`https://api.domain.com/api/inventory-items`.
+`https://api.apisync.io/inventory-items`.
 
 **IDs locais e remotos**
 
@@ -102,7 +102,7 @@ ninguém.
 O Aust espera que você inclua sua API token em todas as requisições em
 um cabeçalho chamado `Authorization`, como no exemplo a seguir:
 
-`curl -H "Token: Bearer $API_TOKEN" "https://api.domain/inventory-items"`
+`curl -H "Token: Bearer $API_TOKEN" "https://api.apisync.io/inventory-items"`
 
 <aside class="notice">
 Você deve substituir `$API_TOKEN` com sua token verdadeira.
@@ -139,7 +139,7 @@ realizar requisições adicionais para ler as demais páginas desejadas.
 
 Para ler a terceira página, use o atributo `page`, como no exemplo abaixo:
 
-`curl "https://api.domain/inventory-items?page[number]=3&page[size]=20"`
+`curl "https://api.apisync.io/inventory-items?page[number]=3&page[size]=20"`
 
 <aside class="notice">
   Por simplicidade, omitiremos **meta** dos exemplos daqui em diante.
