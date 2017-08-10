@@ -18,3 +18,4 @@ gem 'rake'
 gem 'rouge', '~> 2.0.5'
 gem 'redcarpet', '~> 3.4.0'
 gem "sassc"
+gem 'therubyracer'
