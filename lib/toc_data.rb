@@ -8,6 +8,9 @@ def toc_data(page_content)
   html_doc.css('h1, h2, h3').each do |header|
     headers.push({
       id: header.attribute('id').to_s,
+      # When h1.section, we will show it in a different color in the
+      # navigation bar
+      class: header.attribute('class').to_s.match(/section/) ? "section" : "",
       content: header.children,
       level: header.name[1].to_i,
       children: []

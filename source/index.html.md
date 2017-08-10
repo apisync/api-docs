@@ -4,236 +4,145 @@ title: API Reference
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
   - ruby
-  - python
-  - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='https://domain.com'>Inscrever-se</a>
 
 includes:
+  - inventory_items
   - errors
 
-search: true
+search: false
 ---
 
-# Introduction
+# Introdução à API
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Nossa API permite que seus sistema fiquem em sincronia com nosso banco de
+dados, de onde registros são enviados para serviços externos para geração de
+anúncios e mais.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+Utilizamos o formato <a href="http://jsonapi.org" target="jsonapi">JSON:API</a>
+em todos os endpoints.
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+> O endereço da API é https://api.domain.com
 
-# Authentication
+<aside class="warning">
+  A API está em desenvolvimento.
+</aside>
 
-> To authorize, use this code:
+**URLs e domínios**
 
-```ruby
-require 'kittn'
+Vamos omitir o domínio quando especificando. Por exemplo,
+`GET /inventory-items` significa uma requisição HTTP GET para
+`https://api.domain.com/api/inventory-items`.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+**IDs locais e remotos**
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
+> UUID tem o formato do ID a seguir:
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+{
+  "data": {
+    "id": "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2"
+  }
+}
 ```
 
-```javascript
-const kittn = require('kittn');
+Todo registro enviado por você receberá um identificador único, chamado `id`.
+Nós geraremos este `id` com o formato UUID e é usado por nossos sistemas.
 
-let api = kittn.authorize('meowmeowmeow');
-```
+Para que você possa manter referência dos objetos criados em nosso sistema,
+todos os endpoints possuem um atributo string chamado `reference-id` que você
+deve especificar com o identificador presente no seu sistema.
 
-> Make sure to replace `meowmeowmeow` with your API key.
+Com esta referência, você conseguirá excluir itens do nosso sistema quando
+eles forem excluídos do seu.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+## Caracteres especiais em URLs
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Embora uma URL com caracteres inválidos possa funcionar, nós recomendamos
+a utilização de caracteres codificados. A
+[RFC3986](http://tools.ietf.org/html/rfc3986) define o que esperar em uma
+URL.
 
-`Authorization: meowmeowmeow`
+Se você precisar utilizar caracteres especiais em uma URL, recomendamos que
+você substitua-os por um caractere codificado. Por exemplo,
+
+`/admin?ids=1,2,3`
+
+é uma URL inválida porque vírgulas são consideradas caracteres reservados.
+A URL abaixo, entretanto, é totalmente válida:
+
+`/admin?ids=1%2C2%2C3%2C`
+
+Para ver a lista completa de caracteres codificados,
+[veja esta página](http://www.w3schools.com/tags/ref_urlencode.asp) que inclui
+o `%2C` acima.
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+Em vez de `%2C`, mostraremos caracteres como `,` (vírgula) neste manual para melhorar
+a legibilidade.
 </aside>
 
-# Kittens
+# Autorização
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+> Para autenticar uma requisição, envie no cabeçalho sua API token:
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+# No shell, -H significa Header (cabeçalho)
+curl -H "Token: 123456789"
+     "URL_DA_API"
 ```
 
-```javascript
-const kittn = require('kittn');
+Todos clientes possuem uma chave única para acesso à API chamada
+**API Token**. Você pode copiar a sua na página **Configurações** do seu
+painel de administração. Ela é secreta e você não deve compartilhá-la com
+ninguém.
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
+O Aust espera que você inclua sua API token em todas as requisições em
+um cabeçalho chamado `Authorization`, como no exemplo a seguir:
 
-> The above command returns JSON structured like this:
+`curl -H "Token: Bearer $API_TOKEN" "https://api.domain/inventory-items"`
+
+<aside class="notice">
+Você deve substituir `$API_TOKEN` com sua token verdadeira.
+</aside>
+
+Com isto, autenticamos sua requisição e reconhecemos a conta sendo usada.
+
+# Paginação
+
+> Por exemplo, além da entidade, você também tem acesso ao atributo **meta**.
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+{
+  "data": {
+    "id": "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2",
+    "type": "inventory-items",
+    "attributes": {
+      "first-name": "Luke",
+      "last-name":  "Skywalker"
+    },
   },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+  "meta": {
+    "page-number": "2",
+    "page-size": "50"
   }
-]
+}
 ```
 
-This endpoint retrieves all kittens.
+Quando você acessa uma URL da API, você recebe registros divididos por páginas.
 
-### HTTP Request
+No exemplo à direita, a entidade **meta** está presente. Com ela você é informado
+da página atual e do total de páginas. Com estas informações em mãos, você pode
+realizar requisições adicionais para ler as demais páginas desejadas.
 
-`GET http://example.com/api/kittens`
+Para ler a terceira página, use o atributo `page`, como no exemplo abaixo:
 
-### Query Parameters
+`curl "https://api.domain/inventory-items?page[number]=3&page[size]=20"`
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+<aside class="notice">
+  Por simplicidade, omitiremos **meta** dos exemplos daqui em diante.
 </aside>
 
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+<h1 id="resources" class="section">Resources</h1>
