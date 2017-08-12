@@ -29,25 +29,27 @@ $code-bg: #1E2224 !default;
 $code-annotation-bg: #191D1F !default;
 $nav-subitem-bg: #fdfdfd !default;
 $nav-active-bg: #fdfdfd !default;
-$nav-active-parent-bg: #1E2224 !default;
+$nav-active-parent-bg: #fff !default;
 $lang-select-border: #000 !default;
 $lang-select-bg: #1E2224 !default;
 $lang-select-active-bg: $examples-bg !default;
 $lang-select-pressed-bg: #111 !default;
 $main-bg: white !default;
-$aside-notice-bg: #DAF2FC;
-$aside-warning-bg: #FFC5C5;
+$aside-notice-bg: #f0f9ff;
+$aside-warning-bg: #f0f9ff;
 $aside-success-bg: #6ac174;
 $search-notice-bg: #c97a7e !default;
+$nav-border-color: #f3f3f3;
 
 
 // TEXT COLORS
 ////////////////////
 $main-text: #333; // main content text color
-$nav-text: #008cdd;
-$nav-active-text: #666;
-$nav-inactive-text: #008cdd;
-$nav-active-parent-text: pink !default; // parent links of the current section
+$nav-text: #555;
+$nav-active-text: #008cdd;
+$nav-inactive-text: #555;
+$nav-active-parent-text: #555 !default; // parent links of the current section
+$nav-parent-h1: #999; // parent links of the current section
 $lang-select-text: #fff; // color of unselected language tab text
 $lang-select-active-text: #fff; // color of selected language tab text
 $lang-select-pressed-text: #fff; // color of language tab text when mouse is pressed
@@ -55,7 +57,7 @@ $lang-select-pressed-text: #fff; // color of language tab text when mouse is pre
 
 // SIZES
 ////////////////////
-$nav-width: 230px !default; // width of the navbar
+$nav-width: 170px !default; // width of the navbar
 $examples-width: 50% !default; // portion of the screen taken up by code examples
 $logo-margin: 0px !default; // margin below logo
 $main-padding: 28px !default; // padding to left and right of content & examples
@@ -71,13 +73,13 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 // FONTS
 ////////////////////
 %default-font {
-  font-family: -apple-system, Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "Open Sans", "Lato", -apple-system, Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
 }
 
 %header-font {
   @extend %default-font;
-  font-weight: bold;
+  font-weight: 300;
 }
 
 %code-font {
@@ -89,7 +91,7 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 
 // OTHER
 ////////////////////
-$nav-footer-border-color: #666 !default;
+$nav-footer-border-color: #f3f3f3 !default;
 $search-box-border-color: #666 !default;
 
 

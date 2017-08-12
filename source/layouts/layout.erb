@@ -41,6 +41,8 @@ under the License.
     <% else %>
       <%= javascript_include_tag  "all_nosearch" %>
     <% end %>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
   </head>
 
   <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
@@ -70,6 +72,9 @@ under the License.
         <ul class="search-results"></ul>
       <% end %>
       <div id="toc" class="toc-list-h1">
+        <li class="section">
+          <a href="javascript: void(0);" class="toc-h1 toc-link">Tópicos</a>
+        </li>
         <% toc_data(page_content).each do |h1| %>
           <li class="<%= h1[:class] %>">
             <a href="#<%= h1[:id] %>"

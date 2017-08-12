@@ -9,13 +9,13 @@ toc_footers:
   - <a href='https://apisync.io'>Inscrever-se</a>
 
 includes:
-  - inventory_items
+  - inventory_items.md.erb
   - errors
 
 search: false
 ---
 
-# Introdução à API
+# Introdução
 
 Nossa API permite que seus sistema fiquem em sincronia com nosso banco de
 dados, de onde registros são enviados para serviços externos para geração de
@@ -58,7 +58,7 @@ deve especificar com o identificador presente no seu sistema.
 Com esta referência, você conseguirá excluir itens do nosso sistema quando
 eles forem excluídos do seu.
 
-## Caracteres especiais em URLs
+**Caracteres especiais em URLs**
 
 Embora uma URL com caracteres inválidos possa funcionar, nós recomendamos
 a utilização de caracteres codificados. A
