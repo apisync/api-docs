@@ -17,11 +17,11 @@ Estes são os atributos deste resource.
       "item-type": "vehicle",
       "uri": "https://mywebsite.com/products/volkswagen-gol-2011",
       "fingerprint": "2774a6e29bd8b62a48019831e091f831d0ec08a7",
+      "manufacturer-name": "Volkswagen",
+      "model": "Gol",
+      "year": 2011,
       "custom-fields": {
         "my-own-key": "some-value",
-        "make": "Volkswagen",
-        "model": "Gol",
-        "year":  2011
         "city":  "São Paulo"
       }
     }
@@ -35,6 +35,9 @@ Estes são os atributos deste resource.
 <% table << partial("includes/inventory_item_fields/reference_id.erb") %>
 <% table << partial("includes/inventory_item_fields/uri.erb") %>
 <% table << partial("includes/inventory_item_fields/fingerprint.erb") %>
+<% table << partial("includes/inventory_item_fields/manufacturer_name.erb") %>
+<% table << partial("includes/inventory_item_fields/model.erb") %>
+<% table << partial("includes/inventory_item_fields/year.erb") %>
 <% table << partial("includes/inventory_item_fields/price.erb") %>
 <% table << partial("includes/inventory_item_fields/created_at.erb") %>
 
@@ -72,6 +75,9 @@ client.inventory_items.save({
     item_type: "vehicle",
     uri: "https://mywebsite.com/products/volkswagen-gol-2011",
     fingerprint: "2774a6e29bd8b62a48019831e091f831d0ec08a7",
+    manufacturer_name: "Volkswagen",
+    model: "Gol",
+    year:  2011,
     custom_fields: {
       my_own_key: "some-value",
       make: "Volkswagen",
@@ -88,6 +94,9 @@ client.inventory_items.save({
 <% table << partial("includes/inventory_item_fields/custom_fields.erb") %>
 <% table << partial("includes/inventory_item_fields/reference_id.erb") %>
 <% table << partial("includes/inventory_item_fields/uri.erb") %>
+<% table << partial("includes/inventory_item_fields/manufacturer_name.erb") %>
+<% table << partial("includes/inventory_item_fields/model.erb") %>
+<% table << partial("includes/inventory_item_fields/year.erb") %>
 <% table << partial("includes/inventory_item_fields/price.erb") %>
 
 Argumentos | &nbsp;
@@ -104,6 +113,21 @@ uma mensagem de erro.
 Você deve substituir `:id` pelo ID único do registro que você quer
 atualizar.
 
+Estes são os atributos que podem ser atualizados.
+
+<% table = [] %>
+<% table << partial("includes/inventory_item_fields/custom_fields.erb") %>
+<% table << partial("includes/inventory_item_fields/uri.erb") %>
+<% table << partial("includes/inventory_item_fields/manufacturer_name.erb") %>
+<% table << partial("includes/inventory_item_fields/model.erb") %>
+<% table << partial("includes/inventory_item_fields/year.erb") %>
+<% table << partial("includes/inventory_item_fields/price.erb") %>
+
+Argumentos | &nbsp;
+---------- | -----------
+<%= table.join("") %>
+
+
 > Inclua o id para efetuar a atualização.
 
 ```ruby
@@ -117,6 +141,9 @@ client.inventory_items.save({
     item_type: "vehicle",
     uri: "https://mywebsite.com/products/volkswagen-gol-2011",
     fingerprint: "2774a6e29bd8b62a48019831e091f831d0ec08a7",
+    manufacturer_name: "Volkswagen",
+    model: "Gol",
+    year:  2011,
     custom_fields: {
       my_own_key: "some-value",
       make: "Volkswagen",
@@ -155,13 +182,13 @@ client.inventory_items.list
       "item-type": "vehicle",
       "uri": "https://mywebsite.com/products/volkswagen-gol-2011",
       "fingerprint": "2774a6e29bd8b62a48019831e091f831d0ec08a7",
+      "manufacturer-name": "Volkswagen",
+      "model": "Gol",
+      "year":  2011,
       "custom-fields": {
         "my-own-key": "some-value",
-        "make": "Volkswagen",
-        "model": "Gol",
-        "year":  2011
         "city":  "São Paulo"
-      },
+      }
     }
   }]
 }
@@ -210,13 +237,13 @@ client.inventory_items.find("35b87e73-3fec-4f2c-86dd-6afe36a0dbd2")
       "item-type": "vehicle",
       "uri": "https://mywebsite.com/products/volkswagen-gol-2011",
       "fingerprint": "2774a6e29bd8b62a48019831e091f831d0ec08a7",
+      "manufacturer-name": "Volkswagen",
+      "model": "Gol",
+      "year":  2011,
       "custom-fields": {
         "my-own-key": "some-value",
-        "make": "Volkswagen",
-        "model": "Gol",
-        "year":  2011,
         "city":  "São Paulo"
-      },
+      }
     }
   }
 }
