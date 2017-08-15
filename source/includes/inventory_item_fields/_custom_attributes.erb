@@ -1,7 +1,19 @@
 custom&#8209;attributes
-<span class="attribute-explanation">objeto</span> |
-Objeto contendo atributos customizados e que descrevem o item.
-As chaves e valores são livres.
-Todas as chaves serão convertidas para formato com hífen automaticamente. Ex.: `my_key` se torna `my-key`.
-<br><br>
-Se você especificar um template de anúncio que use um atributo customizado.
+<span class="attribute-explanation">lista de objetos, opcional</span> |
+Lista de objetos contendo atributos customizados e que descrevem o item
+com detalhes adicionais.
+Estas são as chaves aceitas:
+<ul>
+  <li>
+    `identifier`: um valor livre
+    que identifique este atributo para que você
+    use-o depois com templates de anúncios. Por exemplo, se
+    seu atributo chama-se
+    "Método de entrega", recomendamos usar `metodo-de-entrega` como id
+    ([hifenizado](#formatos)).
+  </li>
+  <li>`title`: nome humano deste atributo, ex.: "Método de entrega".</li>
+  <li>`value`: valor do atributo, ex.: "Sedex10".</li>
+</ul>
+Se você especificar um template de anúncio que use um atributo customizado,
+usaremos os `identifier` para encontrar o valor.

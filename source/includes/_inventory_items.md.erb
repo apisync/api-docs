@@ -11,19 +11,7 @@ Estes são os atributos deste resource.
   "data": {
     "id": "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2",
     "attributes": {
-      "reference-id": "my-custom-id",
-      "created-at": "2017-21-04T13:00:00Z",
-      "price": 2117990,
-      "ad-template-type": "vehicle",
-      "link": "https://mywebsite.com/products/volkswagen-gol-2011",
-      "fingerprint": "2774a6e29bd8b62a48019831e091f831d0ec08a7",
-      "brand": "Volkswagen",
-      "model": "Gol",
-      "year": 2011,
-      "custom-fields": {
-        "my-own-key": "some-value",
-        "city":  "São Paulo"
-      }
+<%= partial("includes/inventory_item_examples/json_response_attributes.erb").rstrip %>
     }
   }
 }
@@ -81,22 +69,7 @@ Para criar um novo item no seu estoque, use este endpoint.
 client = ApiSync.new(api_key: token)
 client.inventory_items.save({
   attributes: {
-    reference_id: "my-custom-id",
-    created_at: "2017-21-04T13:00:00Z",
-    price: 2117990,
-    ad_template_type: "vehicle",
-    link: "https://mywebsite.com/products/volkswagen-gol-2011",
-    fingerprint: "2774a6e29bd8b62a48019831e091f831d0ec08a7",
-    brand: "Volkswagen",
-    model: "Gol",
-    year:  2011,
-    custom_attributes: {
-      my_own_key: "some-value",
-      make: "Volkswagen",
-      model: "Gol",
-      year: 2011,
-      city: "São Paulo"
-    }
+<%= partial("includes/inventory_item_examples/ruby_save_attributes.erb").rstrip %>
   }
 })
 ```
@@ -140,22 +113,7 @@ client = ApiSync.new(api_key: token)
 client.inventory_items.save({
   id: "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2",
   attributes: {
-    reference_id: "my-custom-id",
-    created_at: "2017-21-04T13:00:00Z",
-    price: 2117990,
-    ad_template_type: "vehicle",
-    link: "https://mywebsite.com/products/volkswagen-gol-2011",
-    fingerprint: "2774a6e29bd8b62a48019831e091f831d0ec08a7",
-    brand: "Volkswagen",
-    model: "Gol",
-    year:  2011,
-    custom_attributes: {
-      my_own_key: "some-value",
-      make: "Volkswagen",
-      model: "Gol",
-      year: 2011,
-      city: "São Paulo"
-    }
+<%= partial("includes/inventory_item_examples/ruby_save_attributes.erb").rstrip %>
   }
 })
 ```
@@ -199,10 +157,6 @@ uma mensagem de erro.
 
 ## Lendo itens
 
-```shell
-curl -H "Authorization: Bearer $TOKEN" "https://api.apisync.io/inventory-items"
-```
-
 ```ruby
 client = ApiSync.new(api_key: token)
 client.inventory_items.list
@@ -215,19 +169,7 @@ client.inventory_items.list
   "data": [{
     "id": "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2",
     "attributes": {
-      "reference-id": "my-custom-id",
-      "created-at": "2017-21-04T13:00:00Z",
-      "price": 2117990,
-      "ad-template-type": "vehicle",
-      "link": "https://mywebsite.com/products/volkswagen-gol-2011",
-      "fingerprint": "2774a6e29bd8b62a48019831e091f831d0ec08a7",
-      "brand": "Volkswagen",
-      "model": "Gol",
-      "year":  2011,
-      "custom-fields": {
-        "my-own-key": "some-value",
-        "city":  "São Paulo"
-      }
+<%= partial("includes/inventory_item_examples/json_response_attributes.erb").rstrip %>
     }
   }]
 }
@@ -254,10 +196,6 @@ Retornará apenas itens onde reference&#8209;id é `my-id`.
 
 ## Lendo um item
 
-```shell
-curl -H "Authorization: Bearer $TOKEN" "https://api.apisync.io/inventory-items/35b87e73-3fec-4f2c-86dd-6afe36a0dbd2"
-```
-
 ```ruby
 client = ApiSync.new(api_key: token)
 client.inventory_items.find("35b87e73-3fec-4f2c-86dd-6afe36a0dbd2")
@@ -270,19 +208,7 @@ client.inventory_items.find("35b87e73-3fec-4f2c-86dd-6afe36a0dbd2")
   "data": {
     "id": "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2",
     "attributes": {
-      "reference-id": "my-custom-id",
-      "created-at": "2017-21-04T13:00:00Z",
-      "price": 2117990,
-      "ad-template-type": "vehicle",
-      "link": "https://mywebsite.com/products/volkswagen-gol-2011",
-      "fingerprint": "2774a6e29bd8b62a48019831e091f831d0ec08a7",
-      "brand": "Volkswagen",
-      "model": "Gol",
-      "year":  2011,
-      "custom-fields": {
-        "my-own-key": "some-value",
-        "city":  "São Paulo"
-      }
+<%= partial("includes/inventory_item_examples/json_response_attributes.erb").rstrip %>
     }
   }
 }

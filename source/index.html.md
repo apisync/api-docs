@@ -2,7 +2,6 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
   - ruby
 
 toc_footers:
@@ -40,7 +39,7 @@ Vamos omitir o domínio quando especificando. Por exemplo,
 
 > UUID tem o formato do ID a seguir:
 
-```shell
+```json
 {
   "data": {
     "id": "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2"
@@ -86,6 +85,24 @@ a legibilidade.
 
 # Formatos
 
+**Hifenização**
+
+```json
+{
+  "custom-attributes": [{
+    "title": "Custom attribute",
+    "identifier": "custom-attribute",
+    "value": "Some value"
+  }]
+}
+```
+
+Para que possamos gerar anúncios adequadamente, bem como processar dados
+enviados de forma determinística, todos os atributos precisam ser
+_hifenizados_ (dasherized), ou seja,
+descritos no formato `word-word`. Desta forma, evitamos diferenças entre
+`my-key`, `myKey` e `my_key`.
+
 **Moedas**
 
 Todas as moedas são especificadas usando padrão [ISO
@@ -94,17 +111,13 @@ para real brasileiro. Veja o link para os detalhes.
 
 **Datas**
 
-Todas as datas devem ser criadas e são retornadas no formato ISO-8601,
-(ex.: `20171012T101200Z`).
+```json
+{
+  "created-at": "20171012T101200Z"
+}
+```
 
-**Atributos**
-
-Alguns atributos são alterados automaticamente no momento da criação, e estes
-estão indicados com o termo `mutavel`. Por exemplo, 
-Para que possamos gerar anúncios adequadamente, todos os atributos precisam ser
-descritos no formato `word-word` (dasherized), incluindo
-`custom-attributes`. Desta forma, evitamos diferenças entre `my-key`, `myKey`
-e `my_key`.
+Todas as datas devem ser criadas e são retornadas no formato ISO-8601.
 
 **Tipos**
 
@@ -117,10 +130,9 @@ Por exemplo,
 
 > Para autenticar uma requisição, envie no cabeçalho sua API token:
 
-```shell
-# No shell, -H significa Header (cabeçalho)
-curl -H "Token: 123456789"
-     "URL_DA_API"
+```ruby
+token = "seu-token"
+client = ApiSync.new(api_key: token)
 ```
 
 Todos clientes possuem uma chave única para acesso à API chamada
