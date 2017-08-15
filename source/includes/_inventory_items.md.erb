@@ -1,6 +1,6 @@
 # Itens do estoque
 
-Um **Item do estoque** representa uma mercadoria.
+Um **Item do estoque** representa um produto ou mercadoria.
 
 ## A entidade
 
@@ -14,10 +14,10 @@ Estes são os atributos deste resource.
       "reference-id": "my-custom-id",
       "created-at": "2017-21-04T13:00:00Z",
       "price": 2117990,
-      "item-type": "vehicle",
-      "uri": "https://mywebsite.com/products/volkswagen-gol-2011",
+      "ad-template-type": "vehicle",
+      "link": "https://mywebsite.com/products/volkswagen-gol-2011",
       "fingerprint": "2774a6e29bd8b62a48019831e091f831d0ec08a7",
-      "manufacturer-name": "Volkswagen",
+      "brand": "Volkswagen",
       "model": "Gol",
       "year": 2011,
       "custom-fields": {
@@ -30,24 +30,36 @@ Estes são os atributos deste resource.
 ```
 
 <% table = [] %>
-<% table << partial("includes/inventory_item_fields/item_type.erb") %>
-<% table << partial("includes/inventory_item_fields/custom_fields.erb") %>
-<% table << partial("includes/inventory_item_fields/reference_id.erb") %>
-<% table << partial("includes/inventory_item_fields/uri.erb") %>
-<% table << partial("includes/inventory_item_fields/fingerprint.erb") %>
-<% table << partial("includes/inventory_item_fields/manufacturer_name.erb") %>
+<!-- required -->
+<% table << partial("includes/inventory_item_fields/ad_template_type.erb") %>
+<% table << partial("includes/inventory_item_fields/availability.erb") %>
+<% table << partial("includes/inventory_item_fields/condition.erb") %>
+<% table << partial("includes/inventory_item_fields/content_language.erb") %>
+
+<!-- optional -->
+<% table << partial("includes/inventory_item_fields/brand.erb") %>
+<% table << partial("includes/inventory_item_fields/custom_attributes.erb") %>
+<% table << partial("includes/inventory_item_fields/description.erb") %>
+<% table << partial("includes/inventory_item_fields/images.erb") %>
+<% table << partial("includes/inventory_item_fields/link.erb") %>
 <% table << partial("includes/inventory_item_fields/model.erb") %>
-<% table << partial("includes/inventory_item_fields/year.erb") %>
 <% table << partial("includes/inventory_item_fields/price.erb") %>
+<% table << partial("includes/inventory_item_fields/reference_id.erb") %>
+<% table << partial("includes/inventory_item_fields/title.erb") %>
+<% table << partial("includes/inventory_item_fields/year.erb") %>
+
+<!-- readonly -->
+<% table << partial("includes/inventory_item_fields/fingerprint.erb") %>
+<% table << partial("includes/inventory_item_fields/sold_out_at.erb") %>
 <% table << partial("includes/inventory_item_fields/created_at.erb") %>
 
 Atributos | &nbsp;
 ------------------- | -----------
-<%= table.join("") %>
+<%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
 
 **Mais detalhes**
 
-**item&#8209;type:** este valor identifica o tipo do item e é usado
+**ad&#8209;template&#8209;type:** este valor identifica o tipo do item e é usado
 para geração de anúncios específicos. Por exemplo,
 temos templates de anúncios para itens do tipo `vehicle` (carros).
 Portanto, use o valor `vehicle` aqui se o item é um carro.
@@ -72,13 +84,13 @@ client.inventory_items.save({
     reference_id: "my-custom-id",
     created_at: "2017-21-04T13:00:00Z",
     price: 2117990,
-    item_type: "vehicle",
-    uri: "https://mywebsite.com/products/volkswagen-gol-2011",
+    ad_template_type: "vehicle",
+    link: "https://mywebsite.com/products/volkswagen-gol-2011",
     fingerprint: "2774a6e29bd8b62a48019831e091f831d0ec08a7",
-    manufacturer_name: "Volkswagen",
+    brand: "Volkswagen",
     model: "Gol",
     year:  2011,
-    custom_fields: {
+    custom_attributes: {
       my_own_key: "some-value",
       make: "Volkswagen",
       model: "Gol",
@@ -90,43 +102,36 @@ client.inventory_items.save({
 ```
 
 <% table = [] %>
-<% table << partial("includes/inventory_item_fields/item_type.erb") %>
-<% table << partial("includes/inventory_item_fields/custom_fields.erb") %>
-<% table << partial("includes/inventory_item_fields/reference_id.erb") %>
-<% table << partial("includes/inventory_item_fields/uri.erb") %>
-<% table << partial("includes/inventory_item_fields/manufacturer_name.erb") %>
+<!-- required -->
+<% table << partial("includes/inventory_item_fields/ad_template_type.erb") %>
+<% table << partial("includes/inventory_item_fields/availability.erb") %>
+<% table << partial("includes/inventory_item_fields/condition.erb") %>
+<% table << partial("includes/inventory_item_fields/content_language.erb") %>
+
+<!-- optional -->
+<% table << partial("includes/inventory_item_fields/brand.erb") %>
+<% table << partial("includes/inventory_item_fields/custom_attributes.erb") %>
+<% table << partial("includes/inventory_item_fields/description.erb") %>
+<% table << partial("includes/inventory_item_fields/images.erb") %>
+<% table << partial("includes/inventory_item_fields/link.erb") %>
 <% table << partial("includes/inventory_item_fields/model.erb") %>
-<% table << partial("includes/inventory_item_fields/year.erb") %>
 <% table << partial("includes/inventory_item_fields/price.erb") %>
+<% table << partial("includes/inventory_item_fields/reference_id.erb") %>
+<% table << partial("includes/inventory_item_fields/title.erb") %>
+<% table << partial("includes/inventory_item_fields/year.erb") %>
 
 Argumentos | &nbsp;
 ---------- | -----------
-<%= table.join("") %>
+<%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
 
 Em caso de sucesso, você receberá de volta a entidade criada. Caso contrário,
 uma mensagem de erro.
 
+Notas:
+
+* ao criar o item, o `fingerprint` será gerado automaticamente.
+
 ## Atualizando itens
-
-`PATCH /inventory-items/:id`
-
-Você deve substituir `:id` pelo ID único do registro que você quer
-atualizar.
-
-Estes são os atributos que podem ser atualizados.
-
-<% table = [] %>
-<% table << partial("includes/inventory_item_fields/custom_fields.erb") %>
-<% table << partial("includes/inventory_item_fields/uri.erb") %>
-<% table << partial("includes/inventory_item_fields/manufacturer_name.erb") %>
-<% table << partial("includes/inventory_item_fields/model.erb") %>
-<% table << partial("includes/inventory_item_fields/year.erb") %>
-<% table << partial("includes/inventory_item_fields/price.erb") %>
-
-Argumentos | &nbsp;
----------- | -----------
-<%= table.join("") %>
-
 
 > Inclua o id para efetuar a atualização.
 
@@ -138,13 +143,13 @@ client.inventory_items.save({
     reference_id: "my-custom-id",
     created_at: "2017-21-04T13:00:00Z",
     price: 2117990,
-    item_type: "vehicle",
-    uri: "https://mywebsite.com/products/volkswagen-gol-2011",
+    ad_template_type: "vehicle",
+    link: "https://mywebsite.com/products/volkswagen-gol-2011",
     fingerprint: "2774a6e29bd8b62a48019831e091f831d0ec08a7",
-    manufacturer_name: "Volkswagen",
+    brand: "Volkswagen",
     model: "Gol",
     year:  2011,
-    custom_fields: {
+    custom_attributes: {
       my_own_key: "some-value",
       make: "Volkswagen",
       model: "Gol",
@@ -154,6 +159,40 @@ client.inventory_items.save({
   }
 })
 ```
+
+`PATCH /inventory-items/:id`
+
+Você deve substituir `:id` pelo ID único do registro que você quer
+atualizar.
+
+Estes são os atributos que podem ser atualizados.
+
+<% table = [] %>
+<!-- required -->
+<% table << partial("includes/inventory_item_fields/ad_template_type.erb") %>
+<% table << partial("includes/inventory_item_fields/availability.erb") %>
+<% table << partial("includes/inventory_item_fields/condition.erb") %>
+<% table << partial("includes/inventory_item_fields/content_language.erb") %>
+
+<!-- optional -->
+<% table << partial("includes/inventory_item_fields/brand.erb") %>
+<% table << partial("includes/inventory_item_fields/custom_attributes.erb") %>
+<% table << partial("includes/inventory_item_fields/description.erb") %>
+<% table << partial("includes/inventory_item_fields/images.erb") %>
+<% table << partial("includes/inventory_item_fields/link.erb") %>
+<% table << partial("includes/inventory_item_fields/model.erb") %>
+<% table << partial("includes/inventory_item_fields/price.erb") %>
+<% table << partial("includes/inventory_item_fields/reference_id.erb") %>
+<% table << partial("includes/inventory_item_fields/title.erb") %>
+<% table << partial("includes/inventory_item_fields/year.erb") %>
+
+Argumentos | &nbsp;
+---------- | -----------
+<%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
+
+Notas:
+
+* ao realizar a modificação, o `fingerprint` será gerado novamente.
 
 Caso a requisição funcione, você receberá de volta a entidade. Caso contrário,
 uma mensagem de erro.
@@ -179,10 +218,10 @@ client.inventory_items.list
       "reference-id": "my-custom-id",
       "created-at": "2017-21-04T13:00:00Z",
       "price": 2117990,
-      "item-type": "vehicle",
-      "uri": "https://mywebsite.com/products/volkswagen-gol-2011",
+      "ad-template-type": "vehicle",
+      "link": "https://mywebsite.com/products/volkswagen-gol-2011",
       "fingerprint": "2774a6e29bd8b62a48019831e091f831d0ec08a7",
-      "manufacturer-name": "Volkswagen",
+      "brand": "Volkswagen",
       "model": "Gol",
       "year":  2011,
       "custom-fields": {
@@ -234,10 +273,10 @@ client.inventory_items.find("35b87e73-3fec-4f2c-86dd-6afe36a0dbd2")
       "reference-id": "my-custom-id",
       "created-at": "2017-21-04T13:00:00Z",
       "price": 2117990,
-      "item-type": "vehicle",
-      "uri": "https://mywebsite.com/products/volkswagen-gol-2011",
+      "ad-template-type": "vehicle",
+      "link": "https://mywebsite.com/products/volkswagen-gol-2011",
       "fingerprint": "2774a6e29bd8b62a48019831e091f831d0ec08a7",
-      "manufacturer-name": "Volkswagen",
+      "brand": "Volkswagen",
       "model": "Gol",
       "year":  2011,
       "custom-fields": {

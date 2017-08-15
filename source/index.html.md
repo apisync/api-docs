@@ -84,6 +84,35 @@ Em vez de `%2C`, mostraremos caracteres como `,` (vírgula) neste manual para me
 a legibilidade.
 </aside>
 
+# Formatos
+
+**Moedas**
+
+Todas as moedas são especificadas usando padrão [ISO
+4217](https://pt.wikipedia.org/wiki/ISO_4217). Por exemplo, especifique `BRL`
+para real brasileiro. Veja o link para os detalhes.
+
+**Datas**
+
+Todas as datas devem ser criadas e são retornadas no formato ISO-8601,
+(ex.: `20171012T101200Z`).
+
+**Atributos**
+
+Alguns atributos são alterados automaticamente no momento da criação, e estes
+estão indicados com o termo `mutavel`. Por exemplo, 
+Para que possamos gerar anúncios adequadamente, todos os atributos precisam ser
+descritos no formato `word-word` (dasherized), incluindo
+`custom-attributes`. Desta forma, evitamos diferenças entre `my-key`, `myKey`
+e `my_key`.
+
+**Tipos**
+
+Todos os tipos especificados neste documento são do
+[tipo JSON](https://en.wikipedia.org/wiki/JSON#Data_types.2C_syntax_and_example).
+Por exemplo,
+`"word"` é do tipo string enquanto `{"key": "value"}` é do tipo objeto.
+
 # Autorização
 
 > Para autenticar uma requisição, envie no cabeçalho sua API token:
