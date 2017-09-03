@@ -3,16 +3,19 @@
     brand: "Volkswagen",
     condition: "new",
     content_language: "pt-br",
-    custom_attributes: {
-      # 'my_own_key' will be converted
-      # to 'my-own-key' automatically
-      # before the request
-      my_own_key: "some-value",
-      make: "Volkswagen",
-      model: "Gol",
-      year: 2011,
-      city: "São Paulo"
-    },
+    custom_attributes: [{
+      title: "Meu atributo",
+      identifier: "custom-attribute",
+      value: "Some value"
+    }, {
+      title: "Fabricante",
+      identifier: "make",
+      value: "Volkswagen"
+    }, {
+      title: "Cidade",
+      identifier: "cidade",
+      value: "Sao Paulo"
+    }],
     description: "Este carro pode ser seu.",
     images: [{
       uri: "https://d2bmfpvrqsqae1.cloudfront.net/9ebd8a76ec6cae3a1f8b542a51a6cc7b.jpg",
