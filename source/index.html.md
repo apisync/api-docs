@@ -140,10 +140,11 @@ Todos clientes possuem uma chave única para acesso à API chamada
 painel de administração. Ela é secreta e você não deve compartilhá-la com
 ninguém.
 
-O ApiSync espera que você inclua sua API token em todas as requisições em
-um cabeçalho chamado `Authorization`, como no exemplo a seguir:
+Você deve incluir sua API token em todas as requisições em
+um cabeçalho chamado `Authorization`, no formato
+`Authorization: ApiToken sua-token-aqui`, como no exemplo a seguir:
 
-`curl -H "Token: Bearer $API_TOKEN" "https://api.apisync.io/inventory-items"`
+`curl -H "Authorization: ApiToken $API_TOKEN" "https://api.apisync.io/inventory-items"`
 
 <aside class="notice">
 Você deve substituir `$API_TOKEN` com sua token verdadeira.
