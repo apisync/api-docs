@@ -152,6 +152,27 @@ Você deve substituir `$API_TOKEN` com sua token verdadeira.
 
 Com isto, autenticamos sua requisição e reconhecemos a conta sendo usada.
 
+# Conta de testes
+
+Todos os clientes possuem uma conta de testes. Esta conta não possui limites
+ou restrições em relação à quantidade mensal de requisições à API, sendo assim
+recomendada para desenvolvimento e testes.
+
+Para usar a conta de testes nas suas requisições de API, utilize a API Token da
+conta de testes. Ela está visível na tela de configurações no painel de
+administração da conta de testes.
+
+Para acessá-la, entre no seu painel de administração, clique no
+menu de Opções e em seguida _Ir para a conta de testes_. Lá você encontrará
+sua API Token para testes.
+
+Em produção, utilize a API Token da conta principal.
+
+<aside class="notice">
+Lembrete: a API Token da conta de testes é diferente da API Token da conta
+de produção.
+</aside>
+
 # Paginação
 
 > Por exemplo, além da entidade, você também tem acesso ao atributo **meta**.
