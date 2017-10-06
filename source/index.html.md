@@ -25,15 +25,33 @@ em todos os endpoints.
 
 > O endereço da API é https://api.apisync.io
 
+Caso sua linguagem esteja listada abaixo, recomendamos o uso da respectiva
+biblioteca para interação com a API.
+
+- **Ruby:** <a href="https://github.com/apisync/apisync-ruby">https://github.com/apisync/apisync-ruby</a>
+
 <aside class="warning">
   A API está em desenvolvimento.
 </aside>
 
 **URLs e domínios**
 
-Vamos omitir o domínio quando especificando. Por exemplo,
-`GET /inventory-items` significa uma requisição HTTP GET para
-`https://api.apisync.io/inventory-items`.
+O servidor da API está localizado em `https://api.apisync.io`. Esta parte da
+URL será omitida dos exemplos. Por exemplo, `GET /inventory-items` significa
+uma requisição HTTP GET para `https://api.apisync.io/inventory-items`.
+
+**Requisição HTTP**
+
+```
+Content-Type: application/vnd.api+json
+Accept: application/vnd.api+json
+```
+
+Você deve definir os seguintes cabeçalhos `Content-Type` e `Accept` para
+`application/vnd.api+json` como formato da requisição.
+
+Se for definir apenas `json` sem `vnd.api`, tentaremos resolver a requisição
+da melhor forma possível mas poderá have inconsistências.
 
 **IDs locais e remotos**
 
@@ -132,7 +150,7 @@ Por exemplo,
 
 ```ruby
 token = "seu-token"
-client = ApiSync.new(api_key: token)
+client = Apisync.new(api_key: token)
 ```
 
 Todos clientes possuem uma chave única para acesso à API chamada

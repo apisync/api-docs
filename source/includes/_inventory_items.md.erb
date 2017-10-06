@@ -66,7 +66,7 @@ Para criar um novo item no seu estoque, use este endpoint.
 > Quando id é omitido, o item é criado.
 
 ```ruby
-client = ApiSync.new(api_key: token)
+client = Apisync.new(api_key: token)
 client.inventory_items.save({
   attributes: {
 <%= partial("includes/inventory_item_examples/ruby_save_attributes.erb").rstrip %>
@@ -109,7 +109,7 @@ Notas:
 > Inclua o id para efetuar a atualização.
 
 ```ruby
-client = ApiSync.new(api_key: token)
+client = Apisync.new(api_key: token)
 client.inventory_items.save({
   id: "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2",
   attributes: {
@@ -158,7 +158,7 @@ uma mensagem de erro.
 ## Lendo itens
 
 ```ruby
-client = ApiSync.new(api_key: token)
+client = Apisync.new(api_key: token)
 client.inventory_items.list
 ```
 
@@ -204,7 +204,7 @@ Retornará apenas itens onde reference&#8209;id é `my-id`.
 ## Lendo um item
 
 ```ruby
-client = ApiSync.new(api_key: token)
+client = Apisync.new(api_key: token)
 client.inventory_items.find("35b87e73-3fec-4f2c-86dd-6afe36a0dbd2")
 ```
 
