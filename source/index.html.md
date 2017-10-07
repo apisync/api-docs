@@ -50,8 +50,8 @@ Accept: application/vnd.api+json
 Você deve definir os seguintes cabeçalhos `Content-Type` e `Accept` para
 `application/vnd.api+json` como formato da requisição.
 
-Se for definir apenas `json` sem `vnd.api`, tentaremos resolver a requisição
-da melhor forma possível mas poderá have inconsistências.
+**Nota:** defina `application/vnd.api+json` em vez de `application/json`
+para evitar inconsistências.
 
 **IDs locais e remotos**
 
@@ -66,7 +66,7 @@ da melhor forma possível mas poderá have inconsistências.
 ```
 
 Todo registro enviado por você receberá um identificador único, chamado `id`.
-Nós geraremos este `id` com o formato UUID e é usado por nossos sistemas.
+Nós geraremos este `id` com o formato UUID que será usado por nossos sistemas.
 
 Para que você possa manter referência dos objetos criados em nosso sistema,
 todos os endpoints possuem um atributo string chamado `reference-id` que você
