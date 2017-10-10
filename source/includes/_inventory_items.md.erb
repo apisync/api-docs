@@ -20,7 +20,7 @@ Estes são os atributos deste resource.
 <% table = [] %>
 <!-- required -->
 <% table << partial("includes/inventory_item_fields/ad_template_type.erb") %>
-<% table << partial("includes/inventory_item_fields/availability.erb") %>
+<% table << partial("includes/inventory_item_fields/available.erb") %>
 <% table << partial("includes/inventory_item_fields/content_language.erb") %>
 
 <!-- optional -->
@@ -77,7 +77,7 @@ client.inventory_items.save({
 <% table = [] %>
 <!-- required -->
 <% table << partial("includes/inventory_item_fields/ad_template_type.erb") %>
-<% table << partial("includes/inventory_item_fields/availability.erb") %>
+<% table << partial("includes/inventory_item_fields/available.erb") %>
 <% table << partial("includes/inventory_item_fields/content_language.erb") %>
 
 <!-- optional -->
@@ -128,7 +128,7 @@ Estes são os atributos que podem ser atualizados.
 <% table = [] %>
 <!-- required -->
 <% table << partial("includes/inventory_item_fields/ad_template_type.erb") %>
-<% table << partial("includes/inventory_item_fields/availability.erb") %>
+<% table << partial("includes/inventory_item_fields/available.erb") %>
 <% table << partial("includes/inventory_item_fields/content_language.erb") %>
 
 <!-- optional -->
@@ -187,7 +187,7 @@ page      | A página que você deseja ver. Se não especificado, o valor é 1.
 Para `filter`, apenas os seguintes atributos são suportados:
 
 * `ad-template-type`
-* `availability`
+* `available`
 * `condition`
 * `reference-id`
 
