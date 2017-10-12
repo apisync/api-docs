@@ -16,7 +16,7 @@ search: false
 
 # Introdução
 
-Nossa API permite que seus sistema fiquem em sincronia com nosso banco de
+Nossa API permite que seus sistemas fiquem em sincronia com nosso banco de
 dados, de onde registros são enviados para serviços externos para geração de
 anúncios e mais.
 
