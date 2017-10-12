@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Deploying to production"
+bundle exec cap production deploy
