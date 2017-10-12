@@ -25,14 +25,11 @@ em todos os endpoints.
 
 > O endereço da API é https://api.apisync.io
 
-Caso sua linguagem esteja listada abaixo, recomendamos o uso da respectiva
-biblioteca para interação com a API.
+Caso sua linguagem/framework esteja listada abaixo, recomendamos o uso da
+respectiva biblioteca para interação com a API.
 
 - **Ruby:** <a href="https://github.com/apisync/apisync-ruby">https://github.com/apisync/apisync-ruby</a>
-
-<aside class="warning">
-  A API está em desenvolvimento.
-</aside>
+- **Ruby on Rails:** <a href="https://github.com/apisync/apisync-rails">https://github.com/apisync/apisync-rails</a>
 
 **URLs e domínios**
 
