@@ -100,9 +100,9 @@ Argumentos | &nbsp;
 Em caso de sucesso, você receberá de volta a entidade criada. Caso contrário,
 uma mensagem de erro.
 
-Notas:
+**Importante:**
 
-* ao criar o item, o `fingerprint` será gerado automaticamente.
+<%= raw_partial("includes/_reference_id_note_post.md") %>
 
 ## Atualizando itens
 
@@ -148,9 +148,10 @@ Argumentos | &nbsp;
 ---------- | -----------
 <%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
 
-Notas:
+**Importante:**
 
-* ao realizar a modificação, o `fingerprint` será gerado novamente.
+<%= raw_partial("includes/_fingerprint_note_put.md") %>
+<%= raw_partial("includes/_reference_id_note_put.md") %>
 
 Caso a requisição funcione, você receberá de volta a entidade. Caso contrário,
 uma mensagem de erro.

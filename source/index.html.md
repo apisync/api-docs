@@ -16,7 +16,7 @@ search: false
 
 # Introdução
 
-Nossa API permite que seus sistemas fiquem em sincronia com nosso banco de
+Nossa API RESTful permite que seus sistemas fiquem em sincronia com nosso banco de
 dados, de onde registros são enviados para serviços externos para geração de
 anúncios e mais.
 
@@ -50,27 +50,30 @@ Você deve definir os seguintes cabeçalhos `Content-Type` e `Accept` para
 **Nota:** defina `application/vnd.api+json` em vez de `application/json`
 para evitar inconsistências.
 
-**IDs locais e remotos**
+**IDs e reference-id no Apisync**
 
 > UUID tem o formato do ID a seguir:
 
 ```json
 {
   "data": {
-    "id": "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2"
+    "id": "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2",
+    "attributes": {
+      "reference-id": "your-own-id"
+    }
   }
 }
 ```
 
-Todo registro enviado por você receberá um identificador único, chamado `id`.
-Nós geraremos este `id` com o formato UUID que será usado por nossos sistemas.
+Todo registro enviado por você receberão automaticamente um identificador único,
+chamado `id` no formato UUID.
 
-Para que você possa manter referência dos objetos criados em nosso sistema,
-todos os endpoints possuem um atributo string chamado `reference-id` que você
-deve especificar com o identificador presente no seu sistema.
+Você também pode enviar um `id` personalizado usando o atributo `reference-id`.
 
-Com esta referência, você conseguirá excluir itens do nosso sistema quando
-eles forem excluídos do seu.
+Se uma requisição **POST** possuir um
+atributo `reference-id` de um registro já existente, tal objeto será
+_atualizado_. Se não existe um objeto com o `reference-id` enviado ou este é
+nulo, um novo registro é criado.
 
 **Caracteres especiais em URLs**
 
