@@ -156,57 +156,13 @@ Argumentos | &nbsp;
 Caso a requisição funcione, você receberá de volta a entidade. Caso contrário,
 uma mensagem de erro.
 
-## Lendo itens
-
-```ruby
-client = Apisync.new(api_key: token)
-client.inventory_items.list
-```
-
-> O comando acima retorna um JSON estruturado como este:
-
-```json
-{
-  "data": [{
-    "id": "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2",
-    "attributes": {
-<%= partial("includes/inventory_item_examples/json_response_attributes.erb").rstrip %>
-    }
-  }]
-}
-```
-
-`GET /inventory-items`
-
-Estes são os possíveis parâmetros:
-
-Parâmetro | Descrição
---------- | -----------
-filter    | Para filtrar atributos.
-page      | A página que você deseja ver. Se não especificado, o valor é 1.
-
-Para `filter`, apenas os seguintes atributos são suportados:
-
-* `ad-template-type`
-* `available`
-* `condition`
-* `reference-id`
-
-### Exemplos
-
-`GET /inventory-items?page[number]=3&page[size]=20`
-
-Retorna a terceira página, 20 itens por página.
-
-`GET /inventory-items?filter[reference-id]=my-id`
-
-Retornará apenas itens onde reference&#8209;id é `my-id`.
+<% # raw_partial("includes/_inventory_items_get.md") %>
 
 ## Lendo um item
 
 ```ruby
 client = Apisync.new(api_key: token)
-client.inventory_items.find("35b87e73-3fec-4f2c-86dd-6afe36a0dbd2")
+client.inventory_items.find(id: "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2")
 ```
 
 > O comando acima retorna um JSON estruturado como este:
@@ -231,3 +187,5 @@ Você deve especificar o ID do item que você deseja ver.
 `GET /inventory-items/35b87e73-3fec-4f2c-86dd-6afe36a0dbd2`
 
 Retornará apenas o item que tem o ID `35b87e73-3fec-4f2c-86dd-6afe36a0dbd2`.
+
+<%= raw_partial("includes/_inventory_items_delete.md") %>
