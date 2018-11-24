@@ -1,0 +1,101 @@
+# Ads <span>beta</span>
+
+An **ad** defines what is shown to users on platforms.
+
+```json
+{
+  "data": {
+    "id": "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2",
+    "type": "ads",
+    "attributes": {
+<%= partial("includes/resources/ads_examples/json_response_attributes.erb").rstrip %>
+    }
+  }
+}
+```
+
+<% table = [] %>
+<!-- required -->
+<% table << partial("includes/resources/ads_fields/ad_type.erb") %>
+<% table << partial("includes/resources/ads_fields/data.erb") %>
+<% table << partial("includes/resources/ads_fields/destination_url.erb") %>
+<% table << partial("includes/resources/generic_fields/state.erb") %>
+
+<!-- optional -->
+<% table << partial("includes/resources/generic_fields/reference_id.erb") %>
+
+<!-- readonly -->
+<% table << partial("includes/resources/generic_fields/created_via.erb") %>
+<% table << partial("includes/resources/generic_fields/created_at.erb") %>
+
+Attributes | &nbsp;
+---------- | -----------
+<%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
+
+<a name="ads-data-details"></a>
+## Data per ad type
+
+<%= partial("includes/resources/text_fragments/ads_data_details.md.erb") %>
+
+## Creating ads
+
+Use this endpoint to create new ads.
+
+> Definition <br> `POST /ads`
+
+<% table = [] %>
+<!-- required -->
+<% table << partial("includes/resources/ads_fields/ad_type.erb") %>
+<% table << partial("includes/resources/ads_fields/data.erb") %>
+<% table << partial("includes/resources/ads_fields/destination_url.erb") %>
+<% table << partial("includes/resources/generic_fields/state.erb") %>
+
+<!-- optional -->
+<% table << partial("includes/resources/generic_fields/reference_id.erb") %>
+
+Attributes | &nbsp;
+---------- | -----------
+<%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
+
+<%= raw_partial("includes/resources/text_fragments/_success_or_error.md") %>
+
+**Important:**
+
+<%= raw_partial("includes/_reference_id_note_post.md") %>
+
+## Updating ads
+
+This is how you can update an ad. We describe below what attributes can be
+updated.
+
+`PATCH /ads/:id`
+
+> Definition <br> `PATCH /ads/:id`
+
+<%= raw_partial("includes/resources/text_fragments/_put_intro.md") %>
+
+<% table = [] %>
+
+<!-- required -->
+<% table << partial("includes/resources/generic_fields/state.erb") %>
+
+Attributes | &nbsp;
+---------- | -----------
+<%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
+
+**Important:**
+
+<%= raw_partial("includes/_reference_id_note_put.md") %>
+
+<%= raw_partial("includes/resources/text_fragments/_success_or_error.md") %>
+
+## Reading ads
+
+<%= raw_partial(
+  "includes/resources/text_fragments/_get_standard.md",
+  resource_url_fragment: 'ads'
+) %>
+
+## Removing ads
+
+<%= raw_partial("includes/resources/text_fragments/_delete_via_state.md") %>

@@ -1,4 +1,5 @@
 //= require ./lib/_energize
+//= require ./lib/_jquery
 //= require ./app/_toc
 //= require ./app/_lang
 

@@ -1,0 +1,149 @@
+<h1 id="facebook-configuration">Facebook Ads <span>beta</span></h1>
+
+Find below specific instructions for Facebook Ads.
+
+<h2 id="facebook-daily-budget">Budget</h2>
+
+```
+POST /ad-sets
+```
+```json
+{
+  "data": {
+    "id": "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2",
+    "type": "ad-sets",
+    "attributes": {
+<%= partial("includes/resources/ad_sets_examples/json_response_attributes.erb").rstrip %>
+<%= partial("includes/resources/ad_sets_examples/json_with_facebook_daily_budget.erb").rstrip %>
+    }
+  }
+}
+```
+
+Facebook [specifies a daily budget](https://developers.facebook.com/docs/marketing-api/reference/ad-campaign) and it needs to be defined on each **ad set**.
+If you want to spend $60 per month, your daily budget will be $2.
+
+Use the `service-configurations` key to set the daily budget for that ad set.
+
+- `daily-budget.amount` (require, integer): <%= raw_partial("includes/resources/generic_fields/_facebook_amount.md.erb") %>
+- `daily-budget.billing-event` (require, string): as per
+[Facebook specs](https://developers.facebook.com/docs/marketing-api/reference/ad-campaign), it can be
+APP_INSTALLS, CLICKS, IMPRESSIONS, LINK_CLICKS, NONE, OFFER_CLAIMS, PAGE_LIKES, POST_ENGAGEMENT, VIDEO_VIEWS, THRUPLAY.
+
+<h2 id="facebook-publisher-platforms">Instagram, Messenger</h2>
+
+```
+POST /ad-sets
+```
+```json
+{
+  "data": {
+    "id": "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2",
+    "type": "ad-sets",
+    "attributes": {
+<%= partial("includes/resources/ad_sets_examples/json_response_attributes.erb").rstrip %>
+<%= partial("includes/resources/ad_sets_examples/json_with_facebook_publisher_platforms.erb").rstrip %>
+    }
+  }
+}
+```
+
+The same ads that go to Facebook can be configured to go to Instagram,
+Messenger and more. To do so, when creating an **ad set** use the key
+`service-configurations.publisher-platforms`, as in the example on the right,
+and pass as value the plaforms you want the ads in that ad-set to show up.
+
+The accepted values can be found on
+[https://developers.facebook.com/docs/marketing-api/targeting-specs/#newplacement](https://developers.facebook.com/docs/marketing-api/targeting-specs/#newplacement) under `publisher_platforms`.
+
+<h2 id="facebook-targeting-by-location">Targeting by Location</h2>
+
+```
+POST /ad-sets
+```
+```json
+{
+  "data": {
+    "id": "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2",
+    "type": "ad-sets",
+    "attributes": {
+<%= partial("includes/resources/ad_sets_examples/json_response_attributes.erb").rstrip %>
+<%= partial("includes/resources/ad_sets_examples/json_with_facebook_location.erb").rstrip %>
+    }
+  }
+}
+```
+
+You can specify geographical location targeting
+on **ad sets** (not on campaign, as Google requires)
+based on country, region, city or zipcode by using the
+`service-configurations` key. See the example on the right.
+
+All values described below can be found with Facebook's API:
+[https://developers.facebook.com/docs/marketing-api/targeting-search#geo](https://developers.facebook.com/docs/marketing-api/targeting-search#geo).
+
+**Countries**
+
+Use the `countries` key and pass a list of country _keys_, as in the example.
+
+For instance, on Facebook
+the key for United Kingdom is `{"key": "GB"}` according to the docs above. They
+use 2 char for all countries, so US stands for United States, BR for Brazil and
+so on.
+
+**Regions**
+
+Use the `regions` key and pass a list of region _keys_, as in the example.
+
+For instance, the documentation above states that region with
+key 3844 (`{"key": "3847"}`) stands for the state of Alaska, US.
+Likewise, you will pass this key in the format of the example on the right.
+Use Facebook's location search to figure what is the region's key you have to
+use for your use case.
+
+**Cities**
+
+Use the `cities` key and pass a list of city _keys_, as in the example.
+
+The same rules as above are applied to cities. For
+example, the key `2418956` stands for the city of Dublin, California.
+Use Facebook's location search to figure what is the city's key you have to
+use for your use case.
+
+**Zipcodes**
+
+Use the `zips` key and pass a list of zipcode _keys_, as in the example.
+
+The documentation, for instance, states that
+the zipcode 90028 has key `US:90028` is within `Los Angeles`.
+Therefore, as the example on the right shows,
+`{"zips": [{"key": "US:90028"}]}` will target that zipcode.
+
+For US based zipcode, they're numerical only so it's easy to guess and
+form what the key would be (e.g `US:some-number`). For other countries,
+though,
+we recommend use Facebook's location search to figure what is the
+region's key you have to use for your use case.
+
+**Custom Locations: Latitude and Longitude and Addresses**
+
+Use the `custom-locations` key and pass a list of lat/lons or addresses,
+as in the example on the right. Whatever you pass here will be transmitted to
+Facebook.
+
+The values that can be used can be seen on
+[https://developers.facebook.com/docs/marketing-api/buying-api/targeting/#location](https://developers.facebook.com/docs/marketing-api/buying-api/targeting/#location).
+
+`radius` defines how far away from the center people can be to be targeted.
+`distance-unit` could be `kilometer` or `miles`.
+
+**Excluded Geolocations**
+
+Use the `excluded_geo_locations` key and pass a list of
+keys and their values, as in the example.
+
+You can nest all the objects stated above inside
+this object key to exclude them. In the example on the right, we don't want
+our ads to show up for region with key `3847`, that is, the region of Alaska,
+therefore we use the `regions` key. The same applies to `countries`, `cities`
+and `zips`.

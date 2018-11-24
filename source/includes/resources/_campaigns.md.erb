@@ -1,0 +1,111 @@
+# Campaigns <span>beta</span>
+
+A campaign defines how ads are going to be run. This is synchronized with
+3rd-party services like Facebook Ads and Google Ads.
+
+**Daily Budget:** Facebook requires a daily budget per ad set, whereas
+Google, on the other hand, is not as granular and requires it on the entire
+campaign. To see how to define a budget,
+see the <a href="#service-configurations">Configurations</a>
+section for details.
+
+Below are the descriptions of the attributes for this resource.
+
+```json
+{
+  "data": {
+    "id": "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2",
+    "type": "ads",
+    "attributes": {
+<%= partial("includes/resources/campaigns_examples/json_response_attributes.erb").rstrip %>
+<%= partial("includes/resources/generic_examples/json_response_service_configurations_empty.erb").rstrip %>
+    }
+  }
+}
+```
+
+<% table = [] %>
+<!-- required -->
+<% table << partial("includes/resources/campaigns_fields/service.erb") %>
+<% table << partial("includes/resources/generic_fields/state.erb") %>
+
+<!-- optional -->
+<% table << partial("includes/resources/campaigns_fields/description.erb") %>
+<% table << partial("includes/resources/generic_fields/reference_id.erb") %>
+<% table << partial("includes/resources/generic_fields/service_configurations.erb") %>
+<% table << partial("includes/resources/generic_fields/title.erb") %>
+
+<!-- readonly -->
+<% table << partial("includes/resources/generic_fields/created_via.erb") %>
+<% table << partial("includes/resources/generic_fields/created_at.erb") %>
+
+Attributes | &nbsp;
+------------------- | -----------
+<%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
+
+## Creating campaigns
+
+> Definition <br> `POST /campaigns`
+
+Use this endpoint to create new campaigns.
+
+<% table = [] %>
+<!-- required -->
+<% table << partial("includes/resources/campaigns_fields/service.erb") %>
+<% table << partial("includes/resources/generic_fields/state.erb") %>
+
+<!-- optional -->
+<% table << partial("includes/resources/campaigns_fields/description.erb") %>
+<% table << partial("includes/resources/generic_fields/reference_id.erb") %>
+<% table << partial("includes/resources/generic_fields/service_configurations.erb") %>
+<% table << partial("includes/resources/generic_fields/title.erb") %>
+
+Attributes | &nbsp;
+---------- | -----------
+<%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
+
+<%= raw_partial("includes/resources/text_fragments/_success_or_error.md") %>
+
+**Important:**
+
+<%= raw_partial("includes/_reference_id_note_post.md") %>
+
+## Updating campaigns
+
+`PUT /campaigns/:id`
+
+> Definition <br> `PUT /campaigns/:id`
+
+<%= raw_partial("includes/resources/text_fragments/_put_intro.md") %>
+
+<% table = [] %>
+
+<!-- required -->
+<% table << partial("includes/resources/generic_fields/state.erb") %>
+
+<!-- optional -->
+<% table << partial("includes/resources/campaigns_fields/description.erb") %>
+<% table << partial("includes/resources/generic_fields/reference_id.erb") %>
+<% table << partial("includes/resources/generic_fields/service_configurations.erb") %>
+<% table << partial("includes/resources/generic_fields/title.erb") %>
+
+Attributes | &nbsp;
+---------- | -----------
+<%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
+
+**Important:**
+
+<%= raw_partial("includes/_reference_id_note_put.md") %>
+
+<%= raw_partial("includes/resources/text_fragments/_success_or_error.md") %>
+
+## Reading campaigns
+
+<%= raw_partial(
+  "includes/resources/text_fragments/_get_standard.md",
+  resource_url_fragment: 'campaigns'
+) %>
+
+## Deleting campaigns
+
+<%= raw_partial("includes/resources/text_fragments/_delete_via_state.md") %>

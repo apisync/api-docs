@@ -1,5 +1,5 @@
-* **reference-id:** quando presente e indicar um objeto que já exista no
-nosso servidor, o objeto será _atualizado_, não criado. Por exemplo, na primeira
-requisição com `{ "reference-id": "abc" }`, o objeto será criado. Na segunda
-e posteriores requisições, o objeto em questão será atualizado porque um objeto
-com o mesmo `reference-id` já foi criado.
+* **reference-id:**
+when present and referring to an existing object, that record will be _updated_,
+not created. For example, on the first request with `{ "reference-id": "abc" }`,
+the object will be created. On the second request, the object that that
+`reference-id` already exists and therefore the object is updated.

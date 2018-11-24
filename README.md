@@ -1,4 +1,4 @@
-# ApiSync API Reference
+# APISync API Reference
 
 This page uses Slate as template. To see how to edit it, go to
 [editing Slate markdown](https://github.com/lord/slate/wiki/Markdown-Syntax).

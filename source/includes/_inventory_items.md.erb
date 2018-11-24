@@ -2,9 +2,7 @@
 
 Um **Item do estoque** representa um produto ou mercadoria.
 
-## A entidade
-
-Estes são os atributos deste resource.
+Estes são os atributos desta entidade.
 
 ```json
 {
@@ -32,14 +30,14 @@ Estes são os atributos deste resource.
 <% table << partial("includes/inventory_item_fields/link.erb") %>
 <% table << partial("includes/inventory_item_fields/model.erb") %>
 <% table << partial("includes/inventory_item_fields/price.erb") %>
-<% table << partial("includes/inventory_item_fields/reference_id.erb") %>
+<% table << partial("includes/resources/generic_fields/reference_id.erb") %>
 <% table << partial("includes/inventory_item_fields/title.erb") %>
 <% table << partial("includes/inventory_item_fields/year.erb") %>
 
 <!-- readonly -->
 <% table << partial("includes/inventory_item_fields/fingerprint.erb") %>
 <% table << partial("includes/inventory_item_fields/sold_out_at.erb") %>
-<% table << partial("includes/inventory_item_fields/created_at.erb") %>
+<% table << partial("includes/resources/generic_fields/created_at.erb") %>
 
 Atributos | &nbsp;
 ------------------- | -----------
@@ -89,7 +87,7 @@ client.inventory_items.save({
 <% table << partial("includes/inventory_item_fields/link.erb") %>
 <% table << partial("includes/inventory_item_fields/model.erb") %>
 <% table << partial("includes/inventory_item_fields/price.erb") %>
-<% table << partial("includes/inventory_item_fields/reference_id.erb") %>
+<% table << partial("includes/resources/generic_fields/reference_id.erb") %>
 <% table << partial("includes/inventory_item_fields/title.erb") %>
 <% table << partial("includes/inventory_item_fields/year.erb") %>
 
@@ -140,7 +138,7 @@ Estes são os atributos que podem ser atualizados.
 <% table << partial("includes/inventory_item_fields/link.erb") %>
 <% table << partial("includes/inventory_item_fields/model.erb") %>
 <% table << partial("includes/inventory_item_fields/price.erb") %>
-<% table << partial("includes/inventory_item_fields/reference_id.erb") %>
+<% table << partial("includes/resources/generic_fields/reference_id.erb") %>
 <% table << partial("includes/inventory_item_fields/title.erb") %>
 <% table << partial("includes/inventory_item_fields/year.erb") %>
 
