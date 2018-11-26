@@ -34,7 +34,8 @@ under the License.
     <style>
       <%= Rouge::Themes::MonokaiSublime.render(:scope => '.highlight') %>
     </style>
-    <%= stylesheet_link_tag :screen, media: :screen %>
+    <link href="stylesheets/screen.css?<%= Time.now.strftime("%Y%m%d%H%M") %>" rel="stylesheet" media="screen">
+    <% # stylesheet_link_tag "screen.css?1", media: :screen %>
     <% # stylesheet_link_tag :print, media: :print %>
     <% if current_page.data.search %>
       <%= javascript_include_tag  "all" %>
