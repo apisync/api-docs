@@ -5,10 +5,13 @@ An **ad** defines what is shown to users on platforms.
 ```json
 {
   "data": {
-    "id": "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2",
+    "id": "81b26e41-1fec-3f4c-86dd-6afe36a2adc3",
     "type": "ads",
     "attributes": {
 <%= partial("includes/resources/ads_examples/json_response_attributes.erb").rstrip %>
+    },
+    "relationships": {
+<%= partial("includes/resources/ads_examples/json_response_relationships.erb").rstrip %>
     }
   }
 }
@@ -31,6 +34,12 @@ An **ad** defines what is shown to users on platforms.
 Attributes | &nbsp;
 ---------- | -----------
 <%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
+
+<% rels = [] %>
+<% rels << partial("includes/resources/ads_rels/ad_set.erb") %>
+Relationships | &nbsp;
+------------------- | -----------
+<%= rels.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
 
 <a name="ads-data-details"></a>
 ## Data per ad type
@@ -61,6 +70,7 @@ Attributes | &nbsp;
 
 **Important:**
 
+<%= raw_partial("includes/resources/text_fragments/_note_creation_requires_rels.md") %>
 <%= raw_partial("includes/_reference_id_note_post.md") %>
 
 ## Updating ads
@@ -85,6 +95,7 @@ Attributes | &nbsp;
 
 **Important:**
 
+<%= raw_partial("includes/resources/text_fragments/_note_cannot_update_rels.md") %>
 <%= raw_partial("includes/_reference_id_note_put.md") %>
 
 <%= raw_partial("includes/resources/text_fragments/_success_or_error.md") %>
@@ -92,9 +103,24 @@ Attributes | &nbsp;
 ## Reading ads
 
 <%= raw_partial(
-  "includes/resources/text_fragments/_get_standard.md",
+  "includes/resources/text_fragments/_get_id_standard.md",
   resource_url_fragment: 'ads'
 ) %>
+
+**Resource within ad set:** to get ads that belong to one ad set,
+
+`GET /ad-sets/:ad-set-id/ads`
+
+<%= raw_partial(
+  "includes/resources/text_fragments/_get_filter_intro.md",
+  resource_url_fragment: 'ad-sets/:ad-set-id/ads'
+) %>
+
+Filters | &nbsp;
+------- | -----------
+<% table = [] %>
+<% table << partial("includes/resources/ads_fields/filter_ad_type.erb") %>
+<%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
 
 ## Removing ads
 

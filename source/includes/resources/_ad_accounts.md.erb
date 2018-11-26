@@ -1,0 +1,52 @@
+# Ad Accounts <span>beta</span>
+
+An Ad Account represents ad accounts on Facebook and _customers_ on Google.
+When you create a campaign, you have to specify an ad account.
+
+This endpoint is readonly and return only the data we have access to. Before
+using this endpoint, you must login to the admin dashboard and give us access
+to you Facebook/Google accounts.
+
+To create campaigns, you need to associate them with an ad account.
+
+Below are the descriptions of the attributes for this resource.
+
+```json
+{
+  "data": {
+    "id": "ad-account-unique-id",
+    "type": "ad-accounts",
+    "attributes": {
+<%= partial("includes/resources/ad_accounts_examples/json_response_attributes.erb").rstrip %>
+    }
+  }
+}
+```
+
+<% table = [] %>
+<!-- readonly -->
+<% table << partial("includes/resources/ad_accounts_fields/id.erb") %>
+<% table << partial("includes/resources/ad_accounts_fields/name.erb") %>
+<% table << partial("includes/resources/ad_accounts_fields/service.erb") %>
+
+Attributes | &nbsp;
+------------------- | -----------
+<%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
+
+## Reading ad accounts
+
+<%= raw_partial(
+  "includes/resources/text_fragments/_get_standard.md",
+  resource_url_fragment: 'ad-accounts'
+) %>
+
+<%= raw_partial(
+  "includes/resources/text_fragments/_get_filter_intro.md",
+  resource_url_fragment: 'ad-accounts'
+) %>
+
+Filters | &nbsp;
+------- | -----------
+<% table = [] %>
+<% table << partial("includes/resources/ad_accounts_fields/filter_service.erb") %>
+<%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
