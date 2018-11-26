@@ -1,0 +1,36 @@
+```
+{
+  "data": {
+    "template-id": "419",
+    "dimensions": "970x250",
+    "template-elements": {
+      "unique-name": "Banner name",
+      "fields": {
+        "name": "banner.zip",
+        "custom-layout": "zip-as-base64",
+        "entry-point": "banner/index.html"
+      }
+    }
+  }
+}
+```
+
+**template-ad**
+
+Template Ad can have a varied number of attributes. For now only
+[Uploaded HTML5 bundle](https://developers.google.com/adwords/api/docs/appendix/templateads#html5_upload_V1) is supported.
+These are the keys you have to provide.
+
+- `template-id` (string): you have to specify `419` for HTML5 bundle.
+- `dimensions` (string): it has to be one of values specified in the
+[HTML5 Uploads dimension specs](https://developers.google.com/adwords/api/docs/appendix/templateads#html5_upload_V1).
+- `template-elements` (object) containing `unique-name` and `fields`.
+- `template-elements.unique-name`
+- `template-elements.fields` (object): defined on [Google
+  documentation](https://developers.google.com/adwords/api/docs/reference/v201809/AdGroupAdService.TemplateElementField), it contains the Media Bundle (ZIP file) with the banner.
+
+The `fields` object requires:
+
+- `name` (string): name of the ZIP file.
+- `custom-layout` (string): a ZIP file containing HTML5 assets, encoded to Base64.
+- `entry-point` (string): path to the index.html file inside the ZIP file.

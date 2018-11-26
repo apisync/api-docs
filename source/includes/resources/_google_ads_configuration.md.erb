@@ -1,0 +1,73 @@
+<h1 id="google-adwords">Google AdWords <span>beta</span></h1>
+
+Find below specific instructions for Google AdWords.
+
+<h2 id="google-daily-budget">Budget</h2>
+
+```
+POST /campaigns
+```
+```json
+{
+  "data": {
+    "id": "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2",
+    "type": "campaigns",
+    "attributes": {
+<%= partial("includes/resources/campaigns_examples/json_response_attributes.erb").rstrip %>
+<%= partial("includes/resources/campaigns_examples/json_with_google_daily_budget.erb").rstrip %>
+    }
+  }
+}
+```
+
+Google [specifies a daily budget](https://developers.google.com/adwords/api/docs/reference/v201809/CampaignService.Budget) on the **campaign** level.
+If you want to spend $60 per month, your daily budget will be $2. Note that
+your actual spending
+[could vary on a daily basis](https://support.google.com/google-ads/answer/1704443).
+
+Use the `service-configurations` key to set the daily budget for that campaign.
+
+- `daily-budget.amount` (require, integer): <%= raw_partial("includes/resources/generic_fields/_google_amount.md.erb") %>
+
+<h2 id="google-targeting-by-location">Targeting by Location</h2>
+
+```
+POST /campaigns
+```
+```json
+{
+  "data": {
+    "id": "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2",
+    "type": "ad-sets",
+    "attributes": {
+<%= partial("includes/resources/campaigns_examples/json_response_attributes.erb").rstrip %>
+<%= partial("includes/resources/campaigns_examples/json_with_google_location.erb").rstrip %>
+    }
+  }
+}
+```
+
+On Google you can specify geographical location targeting
+on **campaigns** (not on ad sets, as Facebook requires)
+based on country, region, state and city by using the
+`service-configurations` object. See the example on the right.
+
+Each location
+[has an ID defined by Google](https://developers.google.com/adwords/api/docs/appendix/geotargeting),
+called Criteria ID and needs to be used in our API.
+
+<%= image_tag "google/geolocations_available.png" %>
+
+For example, if you want to target California, you have to pass in its
+Criteria ID which is `21137`.
+
+**Postal Codes/Zipcodes**
+
+You can use the link above to search for postal codes. Beware that only a
+handful of countries are supported by Google.
+You can use United States, Canada, France postal codes, but not for
+countries like Brazil or China.
+
+**Custom Locations: Latitude and Longitude and Addresses**
+
+As of this writing, Google doesn't support passing lat/lon or addresses.
