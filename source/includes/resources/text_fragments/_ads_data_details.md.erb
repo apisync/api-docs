@@ -1,9 +1,9 @@
-Each service (Google, Facebook etc) provide different features. To be able to
-use them, you have to define them on an ad-by-ad basis.
+Each service (Google, Facebook etc) provides different features.
+Define them on an ad-by-ad basis.
 
-For example, Google's _expanded text ads_ require a headline, a seconds headline
-and a description body, whereas Facebook's _image ads_ require images, a body,
-a title. For each `ad-type` a different set of `data` needs to be defined.
+For example, Google's _expanded text ad_ requires a headline, a second headline
+and a description body, whereas Facebook's _image ad_ requires images, a body,
+a title. For each `ad-type` a different set of `data` needs to be used.
 
 If you need a different type of ad or banner which is not available below,
 get in touch with us.
@@ -16,11 +16,11 @@ value you chose.
 These are the supported ad types and data for Google.
 
 <%= partial("includes/resources/text_fragments/ads_data/google_expanded_text_ad.md.erb") %>
-<%= partial("includes/resources/text_fragments/ads_data/google_template_ad.md.erb") %>
+<% # partial("includes/resources/text_fragments/ads_data/google_template_ad.md.erb") %>
 
 ### **Facebook Ads**
 
 These are the supported ad types and data for Facebook.
 
-<%= partial("includes/resources/text_fragments/ads_data/facebook_image.md.erb") %>
+<%= partial("includes/resources/text_fragments/ads_data/facebook_image_with_link.md.erb") %>
 <%= partial("includes/resources/text_fragments/ads_data/facebook_video.md.erb") %>
