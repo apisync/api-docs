@@ -29,10 +29,10 @@ page      | A página que você deseja ver. Se não especificado, o valor é 1.
 
 Para `filter`, apenas os seguintes atributos são suportados:
 
-* `ad-template-type`
+* `ad_template_type`
 * `available`
 * `condition`
-* `reference-id`
+* `reference_id`
 
 ### Exemplos
 
@@ -40,7 +40,7 @@ Para `filter`, apenas os seguintes atributos são suportados:
 
 Retorna a terceira página, 20 itens por página.
 
-`GET /inventory-items?filter[reference-id]=my-id`
+`GET /inventory-items?filter[reference_id]=my-id`
 
-Retornará apenas itens onde reference&#8209;id é `my-id`.
+Retornará apenas itens onde reference&lowbar;id é `my-id`.
 

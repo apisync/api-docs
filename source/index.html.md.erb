@@ -58,7 +58,7 @@ Você deve definir os seguintes cabeçalhos `Content-Type` e `Accept` para
 **Nota:** defina `application/vnd.api+json` em vez de `application/json`
 para evitar inconsistências.
 
-**IDs e reference-id no Apisync**
+**IDs e reference_id no APISync**
 
 > UUID tem o formato do ID a seguir:
 
@@ -67,7 +67,7 @@ para evitar inconsistências.
   "data": {
     "id": "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2",
     "attributes": {
-      "reference-id": "your-own-id"
+      "reference_id": "your-own-id"
     }
   }
 }
@@ -76,11 +76,11 @@ para evitar inconsistências.
 Todo registro enviado por você receberão automaticamente um identificador único,
 chamado `id` no formato UUID.
 
-Você também pode enviar um `id` personalizado usando o atributo `reference-id`.
+Você também pode enviar um `id` personalizado usando o atributo `reference_id`.
 
 Se uma requisição **POST** possuir um
-atributo `reference-id` de um registro já existente, tal objeto será
-_atualizado_. Se não existe um objeto com o `reference-id` enviado ou este é
+atributo `reference_id` de um registro já existente, tal objeto será
+_atualizado_. Se não existe um objeto com o `reference_id` enviado ou este é
 nulo, um novo registro é criado.
 
 **Caracteres especiais em URLs**
@@ -111,11 +111,11 @@ a legibilidade.
 
 # Formatos
 
-**Hifenização**
+**Atributos**
 
 ```json
 {
-  "custom-attributes": [{
+  "custom_attributes": [{
     "label": "Custom attribute",
     "identifier": "custom-attribute",
     "value": "Some value"
@@ -125,8 +125,8 @@ a legibilidade.
 
 Para que possamos gerar anúncios adequadamente, bem como processar dados
 enviados de forma determinística, todos os atributos precisam ser
-_hifenizados_ (dasherized), ou seja,
-descritos no formato `word-word`. Desta forma, evitamos diferenças entre
+_sublinhados_ (`snake_case`), ou seja,
+descritos no formato `word_word`. Desta forma, evitamos diferenças entre
 `my-key`, `myKey` e `my_key`.
 
 **Moedas**
@@ -139,7 +139,7 @@ para real brasileiro. Veja o link para os detalhes.
 
 ```json
 {
-  "created-at": "20171012T101200Z"
+  "created-at": "2017-10-12T10:12:00Z"
 }
 ```
 
