@@ -20,7 +20,7 @@ An **ad** defines what is shown to users on platforms.
 <% table = [] %>
 <!-- required -->
 <% table << partial("includes/resources/ads_fields/ad_type.erb") %>
-<% table << partial("includes/resources/ads_fields/data.erb") %>
+<% table << partial("includes/resources/ads_fields/creative.erb") %>
 <% table << partial("includes/resources/ads_fields/destination_url.erb") %>
 <% table << partial("includes/resources/generic_fields/state.erb") %>
 
@@ -41,10 +41,10 @@ Relationships | &nbsp;
 ------------------- | -----------
 <%= rels.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
 
-<a name="ads-data-details"></a>
-## Data per ad type
+<a name="ads-creative-details"></a>
+## Creative per ad type
 
-<%= partial("includes/resources/text_fragments/ads_data_details.md.erb") %>
+<%= partial("includes/resources/text_fragments/ads_creative_details.md.erb") %>
 
 ## Creating ads
 
@@ -55,7 +55,7 @@ Use this endpoint to create new ads.
 <% table = [] %>
 <!-- required -->
 <% table << partial("includes/resources/ads_fields/ad_type.erb") %>
-<% table << partial("includes/resources/ads_fields/data.erb") %>
+<% table << partial("includes/resources/ads_fields/creative.erb") %>
 <% table << partial("includes/resources/ads_fields/destination_url.erb") %>
 <% table << partial("includes/resources/generic_fields/state.erb") %>
 
