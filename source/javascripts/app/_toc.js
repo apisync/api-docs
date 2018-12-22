@@ -80,7 +80,7 @@
           window.history.pushState(null, "", best);
         }
         // TODO remove classnames
-        document.title = $best.data("title").replace(/<.*>/, "").trim() + " – " + originalTitle;
+        document.title = ("" + $best.data("title")).replace(/<.*>/, "").trim() + " – " + originalTitle;
       }
     };
 
