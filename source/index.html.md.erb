@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - ruby
 
 toc_footers:
-  - <a href='https://apisync.io'>Inscrever-se</a>
+  - <a href='https://apisync.io'>Sign Up</a>
 
 includes:
   - section_resources.md.erb
@@ -22,45 +22,31 @@ includes:
 search: false
 ---
 
-# Introdução
+# Introduction
 
-Nossa API RESTful permite que seus sistemas fiquem em sincronia com nosso banco de
-dados, de onde registros são enviados para serviços externos para geração de
-anúncios e mais.
+APISync's RESTful API enables you to synchronize your system with our database,
+from where records are sent to external services for marketing automation.
 
-Utilizamos o formato <a href="http://jsonapi.org" target="jsonapi">JSON:API</a>
-em todos os endpoints.
+We follow the <a href="http://jsonapi.org" target="jsonapi">JSON:API</a>
+standard in all endpoints.
 
-> O endereço da API é https://api.apisync.io
+> The API's host is https://api.apisync.io
 
-Caso sua linguagem/framework esteja listada abaixo, recomendamos o uso da
-respectiva biblioteca para interação com a API.
+In case your language or framework is listed below, we recommend using it.
 
 - **Ruby:** <a href="https://github.com/apisync/apisync-ruby">https://github.com/apisync/apisync-ruby</a>
 - **Ruby on Rails:** <a href="https://github.com/apisync/apisync-rails">https://github.com/apisync/apisync-rails</a>
 
-**URLs e domínios**
+**URLs and domains**
 
-O servidor da API está localizado em `https://api.apisync.io`. Esta parte da
-URL será omitida dos exemplos. Por exemplo, `GET /inventory-items` significa
-uma requisição HTTP GET para `https://api.apisync.io/inventory-items`.
+The API's host is at `https://api.apisync.io`. This host will be
+omitted from the examples below for brevity.
+For example, `GET /inventory-items` means an HTTP GET request to
+`https://api.apisync.io/inventory-items`.
 
-**Requisição HTTP**
+**IDs and Reference Id**
 
-```
-Content-Type: application/vnd.api+json
-Accept: application/vnd.api+json
-```
-
-Você deve definir os seguintes cabeçalhos `Content-Type` e `Accept` para
-`application/vnd.api+json` como formato da requisição.
-
-**Nota:** defina `application/vnd.api+json` em vez de `application/json`
-para evitar inconsistências.
-
-**IDs e reference_id no APISync**
-
-> UUID tem o formato do ID a seguir:
+> UUID has the format in the `id` attribute below:
 
 ```json
 {
@@ -73,45 +59,17 @@ para evitar inconsistências.
 }
 ```
 
-Todo registro enviado por você receberão automaticamente um identificador único,
-chamado `id` no formato UUID.
+Every record sent by you will receive a unique ID in the
+<a href="https://en.wikipedia.org/wiki/Universally_unique_identifier" target="_blank">UUID format</a>.
 
-Você também pode enviar um `id` personalizado usando o atributo `reference_id`.
+You can also send your own customized `id` with the `reference_id` attribute.
+When a POST request has a `reference_id` equal to an already existing record,
+such record will be _updated_. If such record doesn't exist yet, a new one will
+be created.
 
-Se uma requisição **POST** possuir um
-atributo `reference_id` de um registro já existente, tal objeto será
-_atualizado_. Se não existe um objeto com o `reference_id` enviado ou este é
-nulo, um novo registro é criado.
+# Formats
 
-**Caracteres especiais em URLs**
-
-Embora uma URL com caracteres inválidos possa funcionar, nós recomendamos
-a utilização de caracteres codificados. A
-[RFC3986](http://tools.ietf.org/html/rfc3986) define o que esperar em uma
-URL.
-
-Se você precisar utilizar caracteres especiais em uma URL, recomendamos que
-você substitua-os por um caractere codificado. Por exemplo,
-
-`/admin?ids=1,2,3`
-
-é uma URL inválida porque vírgulas são consideradas caracteres reservados.
-A URL abaixo, entretanto, é totalmente válida:
-
-`/admin?ids=1%2C2%2C3%2C`
-
-Para ver a lista completa de caracteres codificados,
-[veja esta página](http://www.w3schools.com/tags/ref_urlencode.asp) que inclui
-o `%2C` acima.
-
-<aside class="notice">
-Em vez de <code>%2C</code>, mostraremos caracteres como <code>,</code> (vírgula)
-neste manual para melhorar a legibilidade.
-</aside>
-
-# Formatos
-
-**Atributos**
+**Attributes**
 
 ```json
 {
@@ -123,110 +81,47 @@ neste manual para melhorar a legibilidade.
 }
 ```
 
-Para que possamos gerar anúncios adequadamente, bem como processar dados
-enviados de forma determinística, todos os atributos precisam ser
-_sublinhados_ (`snake_case`), ou seja,
-descritos no formato `word_word`. Desta forma, evitamos diferenças entre
-`my-key`, `myKey` e `my_key`.
+All JSON keys must use `snake_case` (underscores).
 
-**Moedas**
+**Currencies**
 
-Todas as moedas são especificadas usando padrão [ISO
-4217](https://pt.wikipedia.org/wiki/ISO_4217). Por exemplo, especifique `BRL`
-para real brasileiro. Veja o link para os detalhes.
+Currency is specified with [ISO
+4217](https://pt.wikipedia.org/wiki/ISO_4217).
+For instance, specify `BRL` for brazilian Real.
 
-**Datas**
+**Dates**
 
 ```json
 {
-  "created-at": "2017-10-12T10:12:00Z"
+  "created_at": "2017-10-12T10:12:00Z"
 }
 ```
 
-Todas as datas devem ser criadas e são retornadas no formato ISO-8601.
+All dates are in the ISO-8601 format (except where specified).
 
-**Tipos**
+# Authorization
 
-Todos os tipos especificados neste documento são do
-[tipo JSON](https://en.wikipedia.org/wiki/JSON#Data_types.2C_syntax_and_example).
-Por exemplo,
-`"word"` é do tipo string enquanto `{"key": "value"}` é do tipo objeto.
+> To authenticate a request, send your API token in the header:
 
-# Autorização
-
-> Para autenticar uma requisição, envie no cabeçalho sua API token:
-
-```ruby
-token = "seu-token"
-client = Apisync.new(api_key: token)
+```
+curl -H "Authorization: ApiToken $API_TOKEN" \
+     "https://api.apisync.io/inventory-items"
 ```
 
-Todos clientes possuem uma chave única para acesso à API chamada
-**API Token**. Você pode copiar a sua na página **Configurações** do seu
-painel de administração. Ela é secreta e você não deve compartilhá-la com
-ninguém.
+Every customer has a unique API token to access endpoints. You can find yours in
+the dashboard.
 
-Você deve incluir sua API token em todas as requisições em
-um cabeçalho chamado `Authorization`, no formato
-`Authorization: ApiToken sua-token-aqui`, como no exemplo a seguir:
-
-`curl -H "Authorization: ApiToken $API_TOKEN" "https://api.apisync.io/inventory-items"`
+You must include your API token in every request you make using the
+`Authorization` header in the format
+`Authorization: ApiToken $API_TOKEN`.
 
 <aside class="notice">
-Você deve substituir <code>$API_TOKEN</code> com sua token verdadeira.
+Replace <code>$API_TOKEN</code> with your actual API token.
 </aside>
 
-Com isto, autenticamos sua requisição e reconhecemos a conta sendo usada.
+Without this, we cannot know who's using the API and you won't be able to access
+your data.
 
-# Pagination
+<%= raw_partial("includes/_index_pagination.md") %>
 
-> `GET /campaigns` will return a response which contains links such as these:
-
-```
-{
-  "data": {
-    ...
-  },
-  "links": {
-    "next": "https://api.apisync.io/campaigns?page[starting_after]=1539174610449"
-    ...
-  }
-}
-```
-
-APISync uses the cursor strategy for pagination and
-all top-level API resources that return lists have support for it.
-These API methods share a common structure, returning a maximum of 25 records
-in chronological order and a `links` object with URLs to subsequent
-pages in the response body.
-Use these URLs from the `links` for fetching further data.
-
-A query looks like `/campaigns?page[starting_after]=1539174610449`
-
-The `?page[starting_after]` query string is used as condition to return only
-resources that were created after the passed in value. This parameter accepts
-milliseconds since
-<a href="https://en.wikipedia.org/wiki/Unix_time" target="_blank">Unix time</a>.
-
-# Conta de testes
-
-Todos os clientes possuem uma conta de testes. Esta conta não possui limites
-ou restrições em relação à quantidade mensal de requisições à API, sendo assim
-recomendada para desenvolvimento e testes.
-
-Para usar a conta de testes nas suas requisições de API, utilize a API Token da
-conta de testes. Ela está visível na tela de configurações no painel de
-administração da conta de testes.
-
-Para acessá-la, entre no seu painel de administração, clique no
-menu de Opções e em seguida _Ir para a conta de testes_. Lá você encontrará
-sua API Token para testes.
-
-Em produção, utilize a API Token da conta principal.
-
-<aside class="notice">
-Lembrete: a API Token da conta de testes é diferente da API Token da conta
-de produção.
-</aside>
-
-<% # raw_partial("includes/_index_pagination.md") %>
+<%= raw_partial("includes/_index_test_account.md") %>

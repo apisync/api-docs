@@ -1,34 +1,30 @@
-# Paginação
+# Pagination
 
-> Por exemplo, além da entidade, você também tem acesso ao atributo **meta**.
+> `GET /campaigns` will return a response which contains links such as these:
 
-```json
+```
 {
   "data": {
-    "id": "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2",
-    "type": "inventory-items",
-    "attributes": {
-      "first-name": "Luke",
-      "last-name":  "Skywalker"
-    },
+    ...
   },
-  "meta": {
-    "page-number": "2",
-    "page-size": "50"
+  "links": {
+    "next": "https://api.apisync.io/campaigns?page[starting_after]=1539174610449"
+    ...
   }
 }
 ```
 
-Quando você acessa uma URL da API, você recebe registros divididos por páginas.
+APISync uses the cursor strategy for pagination and
+all top-level API resources that return lists have support for it.
+These API methods share a common structure, returning a maximum of 25 records
+in chronological order and a `links` object with URLs to subsequent
+pages in the response body.
+Use these URLs from the `links` for fetching further data.
 
-No exemplo à direita, a entidade **meta** está presente. Com ela você é informado
-da página atual e do total de páginas. Com estas informações em mãos, você pode
-realizar requisições adicionais para ler as demais páginas desejadas.
+A query looks like `/campaigns?page[starting_after]=1539174610449`
 
-Para ler a terceira página, use o atributo `page`, como no exemplo abaixo:
+The `?page[starting_after]` query string is used as condition to return only
+resources that were created after the passed in value. This parameter accepts
+milliseconds since
+<a href="https://en.wikipedia.org/wiki/Unix_time" target="_blank">Unix time</a>.
 
-`curl "https://api.apisync.io/inventory-items?page[number]=3&page[size]=20"`
-
-<aside class="notice">
-  Por simplicidade, omitiremos **meta** dos exemplos daqui em diante.
-</aside>

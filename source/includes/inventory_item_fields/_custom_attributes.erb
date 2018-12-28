@@ -1,22 +1,20 @@
 custom&lowbar;attributes
-<span class="attribute-explanation">lista de objetos, opcional</span> |
-Lista de objetos contendo atributos customizados e que descrevem o item
-com detalhes adicionais.
-Estas são as chaves aceitas:
+<span class="attribute-explanation">object list, optional</span> |
+List of object with customized attributes that describe the item with additional
+details.
+These are the accepted keys:
 <ul>
   <li>
-    `identifier`: um valor livre
-    que identifique este atributo para que você
-    use-o depois com templates de anúncios. Por exemplo, se
-    seu atributo chama-se
-    "Método de entrega", recomendamos usar `metodo-de-entrega` como id
-    ([hifenizado](#formatos)).
+    `identifier`: a value of your choice that identifies this attribute.
+    For example, if your attribute is called "Delivery Method",
+    use `delivery_method`. That way you can reference this later in your
+    ads as `<delivery_method>`.
   </li>
   <li>
-    `label`: nome humano deste atributo, ex.: "Método de entrega". Este valor
-    será usado em formulários.
+    `label`: human name for this attribute, to be used in forms
+    in your dashboard, e.g. "Delivery method".
   </li>
-  <li>`value`: valor do atributo, ex.: "Sedex10".</li>
+  <li>`value`: actual value, e.g. "Standard".</li>
 </ul>
-Se você especificar um template de anúncio que use um atributo customizado,
-usaremos os `identifier` para encontrar o valor.
+If you specify an ad template that uses a custom attribute, use the
+`identifier` as reference.

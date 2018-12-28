@@ -1,18 +1,17 @@
-# Erros
+# Errors
 
-Estes são os erros que podem ser retornados sempre que uma requisição for
-feita.
+These are the errors we return when a request goes wrong.
 
-Código HTTP | Significado
+HTTP&nbsp;Code | Meaning
 ---------- | -------
-400 | Sua requisição está incorreta.
-401 | Sua API key é inválida.
-403 | Você requisitou um resource que você não tem permissão.
-404 | O item requisitado não pode ser encontrado.
-405 | O método que você utilizou não existe ou não é suportado.
-406 | Sua requisição está em um formato não aceitável.
-410 | O resource requisitado não existe mais no servidor.
-422 | A requisição está correta mas não pode ser processada por erros semânticos.
-429 | Você está realizando muitos requests, mais do que sua conta permite. Diminua a quantidade de requests por minuto.
-500 | Houve um problema temporário no servidor. Tente novamente.
-503 | Serviço não disponível porque estamos em manutenção.
+400 | Incorrect request.
+401 | Invalid API key.
+403 | You don't have permission to see this resource.
+404 | Resource can't be found.
+405 | The method you used isn't supported.
+406 | Request format is not supported.
+410 | Resource doesn't exist anymore.
+422 | Request is good but can't be processed due to semantic errors.
+429 | You are doing too many requests, slow down.
+500 | Temporary server problem. Try again.
+503 | We're in maintenance.

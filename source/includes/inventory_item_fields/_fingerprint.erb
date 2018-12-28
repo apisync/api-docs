@@ -1,9 +1,10 @@
 fingerprint
-<span class="attribute-explanation">string, somente leitura</span> |
-Hash única (assinatura, HMAC) gerada automaticamente representando os valores de
+<span class="attribute-explanation">string, read-only</span> |
+Unique hash (signature, HMAC) generated automatically representing
+the sum of values in
 `brand`, `model`, `year`, `reference_id`,
-como uma impressão digital. Usada para identificar objetos duplicados.
+like a fingerprint. This is used to identify duplicated products.
 <br />
 <br />
-Durante a criação de um objeto (POST), se o valor deste campo já existe, o objeto
-pré-existente será atualizado, não criado.
+During creation (POST), if a the same value already exists, the pre-existing
+object will be updated, not created.

@@ -1,8 +1,7 @@
-# Itens do estoque
+# Inventory Items
 
-Um **Item do estoque** representa um produto ou mercadoria.
-
-Estes são os atributos desta entidade.
+An **Inventory Item** represents a product. These are the attributes for this
+resource.
 
 ```json
 {
@@ -39,29 +38,30 @@ Estes são os atributos desta entidade.
 <% table << partial("includes/inventory_item_fields/sold_out_at.erb") %>
 <% table << partial("includes/resources/generic_fields/created_at.erb") %>
 
-Atributos | &nbsp;
+Attributes | &nbsp;
 ------------------- | -----------
 <%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
 
-**Mais detalhes**
+**More details**
 
-**ad&lowbar;template&lowbar;type:** este valor identifica o tipo do item e é usado
-para geração de anúncios específicos. Por exemplo,
-temos templates de anúncios para itens do tipo `vehicle` (carros).
-Portanto, use o valor `vehicle` aqui se o item é um carro.
+**ad&lowbar;template&lowbar;type:** this value
+identifies the type of product and is used for generating specific ads. For
+example, we have templates for `vehicle`, `real-estate`.
 
-No editor de templates de anúncios, no painel de administração, você define o
-alvo dos templates. Você pode definir templates qualquer tipo. Por exemplo,
-se você possui vinhos e quer segmentar os templates, pode criar itens como
-`vinho-cabernet-sauvignon` e `vinho-merlot`.
+Besides the existing templates, you can set your own ones. In the dashboard you
+can create templates for a specific type of product. This is useful for creating
+targetted ads depending on the category of the product.
+You could, for example, define `cabernet-sauvignon-wine` and `merlot-wine` for
+different types of wines, and then different types of ads will be created for
+each.
 
-## Criando itens
+## Creating items
 
-> Definição <br> `POST /inventory-items`
+> Definition <br> `POST /inventory-items`
 
-Para criar um novo item no seu estoque, use este endpoint.
+To create a new item in your inventory, use this endpoint.
 
-> Quando id é omitido, o item é criado.
+> When `id` is omitted, the item is created.
 
 ```ruby
 client = Apisync.new(api_key: token)
@@ -91,20 +91,19 @@ client.inventory_items.save({
 <% table << partial("includes/inventory_item_fields/title.erb") %>
 <% table << partial("includes/inventory_item_fields/year.erb") %>
 
-Argumentos | &nbsp;
+Parameters | &nbsp;
 ---------- | -----------
 <%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
 
-Em caso de sucesso, você receberá de volta a entidade criada. Caso contrário,
-uma mensagem de erro.
+<%= raw_partial("includes/resources/text_fragments/_success_or_error.md") %>
 
-**Importante:**
+**Important:**
 
 <%= raw_partial("includes/_reference_id_note_post.md") %>
 
-## Atualizando itens
+## Updating items
 
-> Inclua o id para efetuar a atualização.
+> Include the `id` to execute an update.
 
 ```ruby
 client = Apisync.new(api_key: token)
@@ -118,10 +117,9 @@ client.inventory_items.save({
 
 `PATCH /inventory-items/:id`
 
-Você deve substituir `:id` pelo ID único do registro que você quer
-atualizar.
+You must replace `:id` with the record's unique ID you to update.
 
-Estes são os atributos que podem ser atualizados.
+These are the attributes that can be used.
 
 <% table = [] %>
 <!-- required -->
@@ -142,28 +140,27 @@ Estes são os atributos que podem ser atualizados.
 <% table << partial("includes/inventory_item_fields/title.erb") %>
 <% table << partial("includes/inventory_item_fields/year.erb") %>
 
-Argumentos | &nbsp;
+Parameters | &nbsp;
 ---------- | -----------
 <%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
 
-**Importante:**
+**Important:**
 
 <%= raw_partial("includes/_fingerprint_note_put.md") %>
 <%= raw_partial("includes/_reference_id_note_put.md") %>
 
-Caso a requisição funcione, você receberá de volta a entidade. Caso contrário,
-uma mensagem de erro.
+<%= raw_partial("includes/resources/text_fragments/_success_or_error.md") %>
 
 <% # raw_partial("includes/_inventory_items_get.md") %>
 
-## Lendo um item
+## Reading items
 
 ```ruby
 client = Apisync.new(api_key: token)
 client.inventory_items.find(id: "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2")
 ```
 
-> O comando acima retorna um JSON estruturado como este:
+> The command above will return an structured JSON like this:
 
 ```json
 {
@@ -178,12 +175,12 @@ client.inventory_items.find(id: "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2")
 
 `GET /inventory-items/:id`
 
-Você deve especificar o ID do item que você deseja ver.
+You must replace `:id` with the record's unique ID you to read.
 
-### Exemplos
+### Examples
 
 `GET /inventory-items/35b87e73-3fec-4f2c-86dd-6afe36a0dbd2`
 
-Retornará apenas o item que tem o ID `35b87e73-3fec-4f2c-86dd-6afe36a0dbd2`.
+This will return the item with `id` `35b87e73-3fec-4f2c-86dd-6afe36a0dbd2`.
 
 <%= raw_partial("includes/_inventory_items_delete.md") %>
