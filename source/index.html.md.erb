@@ -60,7 +60,7 @@ For example, `GET /inventory-items` means an HTTP GET request to
 ```
 
 Every record sent by you will receive a unique ID in the
-<a href="https://en.wikipedia.org/wiki/Universally_unique_identifier" target="_blank">UUID format</a>.
+<a href="https://en.wikipedia.org/wiki/Universally_unique_identifier" target="_uuid">UUID format</a>.
 
 You can also send your own customized `id` with the `reference_id` attribute.
 When a POST request has a `reference_id` equal to an already existing record,
@@ -81,12 +81,14 @@ be created.
 }
 ```
 
-All JSON keys must use `snake_case` (underscores).
+All JSON keys must use
+<a href="https://en.wikipedia.org/wiki/Snake_case" target="_snakecase">snake_case</a>
+(underscores).
 
 **Currencies**
 
-Currency is specified with [ISO
-4217](https://pt.wikipedia.org/wiki/ISO_4217).
+Currency is specified with
+<a href="https://en.wikipedia.org/wiki/ISO_4217" target="_iso4217">ISO 4217</a>.
 For instance, specify `BRL` for brazilian Real.
 
 **Dates**
@@ -97,7 +99,9 @@ For instance, specify `BRL` for brazilian Real.
 }
 ```
 
-All dates are in the ISO-8601 format (except where specified).
+All dates are in the
+<a href="https://en.wikipedia.org/wiki/ISO_8601" target="_iso8601">ISO 8601</a>
+format (except where specified).
 
 # Authorization
 
