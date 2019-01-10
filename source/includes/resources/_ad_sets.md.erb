@@ -35,6 +35,7 @@ Below are the descriptions of the attributes for this resource.
 <% table << partial("includes/resources/generic_fields/service_configurations.erb") %>
 <% table << partial("includes/resources/generic_fields/title.erb") %>
 <!-- readonly -->
+<% table << partial("includes/resources/generic_fields/service_readonly.erb") %>
 <% table << partial("includes/resources/generic_fields/created_via.erb") %>
 <% table << partial("includes/resources/generic_fields/created_at.erb") %>
 
@@ -57,8 +58,10 @@ Use this endpoint to create new ad sets.
 <% table = [] %>
 <!-- required -->
 <% table << partial("includes/resources/generic_fields/state.erb") %>
+<% table << partial("includes/resources/ad_sets_fields/bids.erb") %>
 <!-- optional -->
 <% table << partial("includes/resources/generic_fields/reference_id.erb") %>
+<% table << partial("includes/resources/generic_fields/service_configurations.erb") %>
 <% table << partial("includes/resources/generic_fields/title.erb") %>
 Attributes | &nbsp;
 ---------- | -----------
