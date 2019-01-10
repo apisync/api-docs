@@ -463,6 +463,10 @@ a {
     }
   }
 
+  span.attribute-required {
+    color: orange;
+  }
+
   table {
     margin-bottom: 1em;
     overflow: auto;
@@ -508,9 +512,6 @@ a {
       }
       span.attribute-explanation {
         color: #777;
-      }
-      span.attribute-required {
-        color: orange;
       }
     }
 

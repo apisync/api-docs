@@ -61,6 +61,8 @@ The accepted values can be found on
 
 <h2 id="facebook-targeting-by-location">Targeting by Location</h2>
 
+<span class="attribute-required">**Required**</span>
+
 ```
 POST /ad-sets
 ```
@@ -77,10 +79,9 @@ POST /ad-sets
 }
 ```
 
-You can specify geographical location targeting
-on **ad sets** (not on campaign, as Google requires)
-based on country, region, city or zipcode by using the
-`service-configurations` key. See the example on the right.
+You are required by Facebook to specify a geographical targeting location
+for every **ad set**. It is based on country, region, city or zipcode by using
+the `service-configurations` key. See the example on the right.
 
 All values described below can be found with Facebook's API:
 [https://developers.facebook.com/docs/marketing-api/targeting-search#geo](https://developers.facebook.com/docs/marketing-api/targeting-search#geo).
