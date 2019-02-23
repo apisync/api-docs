@@ -1,27 +1,93 @@
-Each service (Google, Facebook etc) provides different features.
-Define them on an ad-by-ad basis.
+Each Ad has a different Creative (ad format).
 
-For example, Google's _expanded text ad_ requires a headline, a second headline
-and a description body, whereas Facebook's _image ad_ requires images, a body,
-a title. For each `ad-type` a different set of data needs to be used. This data
-is called **Creative**.
+Below you will find what you have to use as `creative` depending on the `type`
+of ad you want. If you need a different type of ad or banner which is not
+available below, get in touch with us.
 
-If you need a different type of ad or banner which is not available below,
-get in touch with us.
-
-Below you will find what you have to pass as `creative` depending on the `ad-type`
-value you chose.
+<aside>In the code examples, the key "creative" is the attributes in /ads.</aside>
 
 ### **Google Ads**
 
 These are the supported ad types and creative for Google.
 
+**expanded-text-ad**
+
+```json
+{
+  "creative": {
+    "type": "expanded_text_ad",
+    "link": "http://ascendancestudio.com/homepage.html",
+    "spec": {
+      "headline_part1": "Ascendance",
+      "headline_part2": "Kids Dance Class",
+      "description": "All Ages and Styles. Try a Free Class Today"
+    }
+  }
+}
+```
+
+<section class="creative-details">
 <%= partial("includes/resources/text_fragments/ad_creative/google_expanded_text_ad.md.erb") %>
+</section>
+
 <% # partial("includes/resources/text_fragments/ad_creative/google_template_ad.md.erb") %>
 
 ### **Facebook Ads**
 
 These are the supported ad types and creative for Facebook.
 
-<%= partial("includes/resources/text_fragments/ad_creative/facebook_image_with_link.md.erb") %>
-<%= partial("includes/resources/text_fragments/ad_creative/facebook_video.md.erb") %>
+**image_data**
+
+```json
+{
+  "creative": {
+    "type": "link_data",
+    "spec": {
+      "link_data": {
+        "link": "https://example.com",
+        "message": "The main body of the post, above the image.",
+        "picture": "https://example.com/ad-picture.png",
+        "description": "Link description below the image's title.",
+        "call_to_action": {
+          "type": "OPEN_LINK",
+          "value": {
+            "link_caption": "example.com/subscribe"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+<section class="creative-details">
+<%= partial("includes/resources/text_fragments/ad_creative/facebook_link_data.md.erb") %>
+</section>
+
+**video_data**
+
+```json
+{
+  "creative": {
+    "type": "video_data",
+    "spec": {
+      "video_data": {
+        "link": "https://example.com",
+        "message": "The main body of the post, above the image.",
+        "image_url": "https://example.com/ad-picture.png",
+        "video_url": "http://example.com/video.avi",
+        "link_description": "Link description below the video.",
+        "call_to_action": {
+          "type": "OPEN_LINK",
+          "value": {
+            "link_caption": "example.com/subscribe"
+          }
+        }
+      }
+    }
+  }
+}
+```
+<section class="creative-details">
+<%= partial("includes/resources/text_fragments/ad_creative/facebook_video_data.md.erb") %>
+</section>

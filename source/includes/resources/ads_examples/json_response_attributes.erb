@@ -1,10 +1,20 @@
-      "ad_type": "expanded-text-ad",
       "creative": {
-        "headline_part1": "Beach House in Miami",
-        "headline_part2": "This amazing home can be yours",
-        "description": "For only $400,000"
-      }
-      "destination_url": "https://apisync.io",
+        "type": "link_data",
+        "spec": {
+          "link_data": {
+            "message": "Message for your creative",
+            "description": "Sample ad creative for Facebook",
+            "link": "https://apisync.io",
+            "picture": "https://apisync.io/ad_image.jpg",
+            "call_to_action": {
+              "type": "OPEN_LINK",
+              "value": {
+                "link_caption": "https://apisync.io"
+              }
+            }
+          }
+        }
+      },
       "service": "facebook-ads",
       "state": "active",
       "reference_id": "my-custom-id"

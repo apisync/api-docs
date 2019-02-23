@@ -1,0 +1,20 @@
+<%= image_tag "ads/facebook_link_data.png",
+  class: 'facebook-ads creative link-data' %>
+
+**type:** `link_data`.
+<br>
+**link:** don't use it, as it's already in the `spec`.
+<br>
+**spec:** these are the keys you have to provide (see code example):
+
+- `link_data.link` (string): the URL the user will be redirected to when
+clithe ad.
+- `link_data.message` (string): the main body of the post, above the image.
+- `link_data.picture` (string): URL of the ad image.
+- `link_data.description` (string): text that appears below the ad image.
+- `link_data.call_to_action.type` (string): one of the values defined
+in [this page](https://developers.facebook.com/docs/marketing-api/reference/ad-creative-link-data-call-to-action/). Use `OPEN_LINK` for generic ads that take users
+to other pages.
+- `link_data.call_to_action.value.link_caption` (string): This is the
+URL that will show up to the user.
+This has to be similar to `link_data.link`.

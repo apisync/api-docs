@@ -1,0 +1,23 @@
+<%= image_tag "ads/facebook_video_data.png",
+  class: 'facebook-ads creative video-data' %>
+
+**type:** `video_data`.
+<br>
+**link:** don't use it, as it's already in the `spec`.
+<br>
+**spec:** these are the keys you have to provide (see code example):
+
+- `video_data.link` (string): the URL the user will be redirected to when
+clicking the ad.
+- `video_data.message` (string): the main body of the post, above the image.
+- `video_data.image_url` (string): URL of the ad thumbnail used when the
+video is not playing.
+- `video_data.video_url` (string): URL of the video to be uploaded to
+Facebook.
+- `video_data.link_description` (string): link description below the video.
+- `video_data.call_to_action.type` (string): one of the values defined
+in [this page](https://developers.facebook.com/docs/marketing-api/reference/ad-creative-link-data-call-to-action/). Use `OPEN_LINK` for generic ads that take users
+to other pages, `LIKE_PAGE` for page likes.
+- `video_data.call_to_action.value.link_caption` (string): This is the
+URL that will show up to the user in the ad link.
+This has to be similar to `video_data.link`.

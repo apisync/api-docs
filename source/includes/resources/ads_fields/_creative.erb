@@ -1,9 +1,24 @@
 creative
 <span class="attribute-required">required</span>
 <span class="attribute-explanation">object</span> |
-The keys in this object depend on the `ad-type` value. For example,
-Google's _expanded-text-ad_ will require headlines and description while
-a Facebook's _video_ ad will require a video URL.
+All details about how this Ad will look.
 <br>
 <br>
-<a href="#ads-creative-details">See Creative Per Ad Type</a> to know what are the creative attributes for each ad type.
+**type:** the type of the creative. It depends on the service you're using.
+On AdWords, you could use `expanded_text_ads`, whereas on Facebook `link_data`
+or `video_data` and others.
+<br>
+<br>
+**spec:** the specification for this creative.
+This object depends entirely on the `type`. For example,
+Google's `expanded_text_ad` will require headlines and description while
+a Facebook's `video_data` ad will require a video URL.
+<br>
+<br>
+**link:** depends on creative type. When required, it's a URL starting with
+`http` to which the user will be taken to when
+interacting with the Ad. It varies between Google Ads and Facebook Ads.
+<br>
+<br>
+<a href="#ads-creative-details">See Creative Specs</a> to know what
+are the creative attributes for each type.

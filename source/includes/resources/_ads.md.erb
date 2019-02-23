@@ -1,6 +1,12 @@
 # Ads <span>beta</span>
 
-An **ad** defines what is shown to users on platforms.
+An **Ad** defines what is shown to users on platforms. One ad has a Creative.
+
+If you don't know what a Creative is: it's the format of the Ad. It can be
+images, video, carousel or perhaps text-only, and so on, depending on the
+service. You can send a video to Facebook, but Google search won't support it.
+
+Below you'll see the Ad resource. In it you can define its Creative.
 
 ```json
 {
@@ -19,9 +25,7 @@ An **ad** defines what is shown to users on platforms.
 
 <% table = [] %>
 <!-- required -->
-<% table << partial("includes/resources/ads_fields/ad_type.erb") %>
 <% table << partial("includes/resources/ads_fields/creative.erb") %>
-<% table << partial("includes/resources/ads_fields/destination_url.erb") %>
 <% table << partial("includes/resources/generic_fields/state.erb") %>
 
 <!-- optional -->
@@ -42,11 +46,6 @@ Relationships | &nbsp;
 ------------------- | -----------
 <%= rels.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
 
-<a name="ads-creative-details"></a>
-## Creative per ad type
-
-<%= partial("includes/resources/text_fragments/ads_creative_details.md.erb") %>
-
 ## Creating ads
 
 Use this endpoint to create new ads.
@@ -55,9 +54,7 @@ Use this endpoint to create new ads.
 
 <% table = [] %>
 <!-- required -->
-<% table << partial("includes/resources/ads_fields/ad_type.erb") %>
 <% table << partial("includes/resources/ads_fields/creative.erb") %>
-<% table << partial("includes/resources/ads_fields/destination_url.erb") %>
 <% table << partial("includes/resources/generic_fields/state.erb") %>
 
 <!-- optional -->
@@ -120,9 +117,15 @@ Attributes | &nbsp;
 Filters | &nbsp;
 ------- | -----------
 <% table = [] %>
-<% table << partial("includes/resources/ads_fields/filter_ad_type.erb") %>
+<% table << partial("includes/resources/ads_fields/filter_creative_type.erb") %>
 <%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
 
 ## Removing ads
 
 <%= raw_partial("includes/resources/text_fragments/_delete_via_state.md") %>
+
+<a name="ads-creative-details"></a>
+## Creative Specs
+
+<%= partial("includes/resources/text_fragments/ads_creative_details.md.erb") %>
+

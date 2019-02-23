@@ -362,7 +362,7 @@ a {
     font-weight: bold;
   }
 
-  &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
+  &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl, &>section {
     margin-right: $examples-width;
     padding: 0 $main-padding;
     box-sizing: border-box;
@@ -545,6 +545,32 @@ a {
   img {
     max-width: 100%;
     max-height: 500px;
+  }
+
+  .creative-details {
+    background: rgba(0, 0, 0, 0.05);
+    padding-top: 15px;
+    padding-bottom: 30px;
+    margin-bottom: 45px;
+
+    ul {
+      padding-left: 15px;
+    }
+
+    img.creative {
+      max-width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin: 0 auto;
+      margin-top: 20px;
+      margin-bottom: 30px;
+      display: block;
+
+      &.google-ads {
+        &.expanded-text-ad {
+        }
+      }
+    }
   }
 
   code {
