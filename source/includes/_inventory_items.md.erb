@@ -173,14 +173,16 @@ client.inventory_items.find(id: "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2")
 }
 ```
 
-`GET /inventory-items/:id`
+<%= raw_partial(
+  "includes/resources/text_fragments/_get_standard.md",
+  resource_url_fragment: 'inventory-items',
+  beta: ' <span class="beta">beta</span>'
+) %>
 
-You must replace `:id` with the record's unique ID you to read.
 
-### Examples
-
-`GET /inventory-items/35b87e73-3fec-4f2c-86dd-6afe36a0dbd2`
-
-This will return the item with `id` `35b87e73-3fec-4f2c-86dd-6afe36a0dbd2`.
+<%= raw_partial(
+  "includes/resources/text_fragments/_get_id_standard.md",
+  resource_url_fragment: 'inventory-items'
+) %>
 
 <%= raw_partial("includes/_inventory_items_delete.md") %>

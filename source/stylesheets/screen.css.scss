@@ -380,6 +380,15 @@ a {
     clear:both;
   }
 
+  span.beta {
+    font-size: 0.8em;
+    color: orange;
+    border: 1px solid #999;
+    border-radius: 5px;
+    font-weight: normal !important;
+    padding: 0px 3px;
+  }
+
   h1, h2 {
     /* beta */
     span {

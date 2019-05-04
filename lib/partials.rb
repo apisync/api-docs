@@ -4,5 +4,7 @@ def raw_partial(path, variables = {})
   variables.each do |variable, value|
     result = result.gsub("%{#{variable}}", value)
   end
+  result = result.gsub(/%{.*}/, '')
+
   result.strip
 end
