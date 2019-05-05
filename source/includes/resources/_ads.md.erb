@@ -114,11 +114,12 @@ Attributes | &nbsp;
   resource_url_fragment: 'ad-sets/:ad-set-id/ads'
 ) %>
 
-Filters | &nbsp;
+Accepted filters | &nbsp;
 ------- | -----------
 <% table = [] %>
 <% table << partial("includes/resources/ads_fields/filter_creative_type.erb") %>
 <%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
+<%= raw_partial("includes/resources/text_fragments/_common_filters.md") %>
 
 ## Removing ads
 
