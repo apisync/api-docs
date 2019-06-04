@@ -1,2 +1,1 @@
-To remove a campaign, you need to update the `state` attribute.
-
+To remove a resource of this type, you need to update the `state` attribute.

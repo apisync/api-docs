@@ -9,6 +9,9 @@ class UniqueHeadCounter < Middleman::Renderers::MiddlemanRedcarpetHTML
 
   def header(text, header_level)
     friendly_text = text.parameterize
+    if friendly_text =~ /.*-span-.*/
+      friendly_text = friendly_text.gsub(/(.*)-span-.*/, '\1')
+    end
     @head_count[friendly_text] ||= 0
     @head_count[friendly_text] += 1
     if @head_count[friendly_text] > 1

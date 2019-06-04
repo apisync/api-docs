@@ -1,0 +1,100 @@
+<% section_name = "Upstream" %>
+<% base_url = "/upstream" %>
+# <%= section_name %> <span>beta</span>
+
+`<%= base_url %>`
+
+This endpoint returns data straight from the upstream service. Right now,
+it provides:
+
+* Facebook _Ad Accounts_ and _Pages_
+* Google Ads _Customers_
+
+<aside class="notice">
+  <strong>Upstream</strong> means the data that comes directly from Facebook or
+  Google, not from us.
+</aside>
+
+**Why use this endpoint?**
+
+You need to specify what is your Account's Facebook Page ID because when we
+generate ads, Facebook requires that we include your Page ID. The same applies
+to Google and a Customer ID.
+
+But what is that ID?
+
+This endpoint returns these pieces of data, and so you can update your accounts
+via `/accounts/:id`.
+
+**But why use this endpoint and not Facebook or Google directly?**
+
+For the same reason you're using APISync: so that you don't need to change your
+code when Facebook changes. Our API is architect to outlast their APIs.
+
+<aside class="notice">
+  This endpoint is readonly. Before using this endpoint, you must login to the
+  admin dashboard and give us access to you Facebook and/or Google accounts.
+</aside>
+
+Below are the descriptions of the attributes for this resource.
+
+<a name="upstream-facebook-ad-accounts"></a>
+## Facebook Ad Accounts
+
+```json
+{
+  "data": [{
+    "id": "act_123456789",
+    "type": "facebook-ad-accounts",
+    "attributes": {
+      "name": "Business Ad Account"
+    }
+  }]
+}
+```
+
+**URL:** `GET /upstream/facebook/ad-accounts`
+
+This returns the Ad Accounts you have access to on Facebook.
+You can use this
+information to configure your accounts.
+
+<a name="upstream-facebook-pages"></a>
+## Facebook Pages
+
+```json
+{
+  "data": [{
+    "id": "534865756851084",
+    "type": "facebook-pages",
+    "attributes": {
+      "name": "APISync Page"
+    }
+  }]
+}
+```
+
+**URL:** `GET /upstream/facebook/pages`
+
+This returns the Pages you have access to on Facebook.
+You can use this information to configure your accounts.
+
+<a name="upstream-google-customers"></a>
+## Google Customers
+
+```json
+{
+  "data": [{
+    "id": "123-123-1234",
+    "type": "google-ads-customers",
+    "attributes": {
+      "name": "Business Customer"
+    }
+  }]
+}
+```
+
+**URL:** `GET /upstream/google-ads/customers`
+
+This returns the Customers you have access to on Google.
+You can use this information to configure your accounts.

@@ -1,5 +1,7 @@
 # Inventory Items
 
+`/accounts/:account-id/inventory-items`
+
 An **Inventory Item** represents a product. These are the attributes for this
 resource.
 
@@ -57,11 +59,11 @@ each.
 
 ## Creating items
 
-> Definition <br> `POST /inventory-items`
-
-To create a new item in your inventory, use this endpoint.
-
-> When `id` is omitted, the item is created.
+<%= raw_partial(
+  "includes/resources/text_fragments/_endpoint_intro.md",
+  endpoint: 'POST /accounts/:account-id/inventory-items',
+  purpose: 'create a new inventory item'
+) %>
 
 ```ruby
 client = Apisync.new(api_key: token)
@@ -115,7 +117,11 @@ client.inventory_items.save({
 })
 ```
 
-`PATCH /inventory-items/:id`
+<%= raw_partial(
+  "includes/resources/text_fragments/_endpoint_intro.md",
+  endpoint: 'PUT /accounts/:account-id/inventory-items/:id',
+  purpose: 'update an existing inventory item'
+) %>
 
 You must replace `:id` with the record's unique ID you to update.
 
@@ -174,15 +180,20 @@ client.inventory_items.find(id: "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2")
 ```
 
 <%= raw_partial(
-  "includes/resources/text_fragments/_get_standard.md",
-  resource_url_fragment: 'inventory-items',
-  beta: ' <span class="beta">beta</span>'
+  "includes/resources/text_fragments/_endpoint_intro.md",
+  endpoint: 'GET /accounts/:account-id/inventory-items*',
+  purpose: 'read inventory items'
 ) %>
 
+<%= raw_partial(
+  "includes/resources/text_fragments/_get_standard.md",
+  resource_url_fragment: '/accounts/:account-id/inventory-items',
+  beta: ' <span class="beta">BETA</span>'
+) %>
 
 <%= raw_partial(
   "includes/resources/text_fragments/_get_id_standard.md",
-  resource_url_fragment: 'inventory-items'
+  resource_url_fragment: '/accounts/:account-id/inventory-items',
 ) %>
 
 <%= raw_partial("includes/_inventory_items_delete.md") %>

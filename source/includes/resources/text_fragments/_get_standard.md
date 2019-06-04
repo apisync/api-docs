@@ -1,3 +1,5 @@
-**All resources%{beta}:** to get all resources, use,
+**All resources%{beta}**
 
-`GET /%{resource_url_fragment}`
+To get all resources, use,
+
+`GET %{resource_url_fragment}`
