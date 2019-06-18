@@ -1,0 +1,77 @@
+# Technical Details
+
+We follow the <a href="http://jsonapi.org" target="jsonapi">JSON:API</a>
+standard in all endpoints.
+
+## URLs and domains
+
+> The API's host is https://api.apisync.io
+
+The API's host is at `https://api.apisync.io`. This host will be
+omitted from the examples below for brevity.
+For example, `GET /inventory-items` means an HTTP GET request to
+`https://api.apisync.io/inventory-items`.
+
+## IDs and Reference Id
+
+> UUID has the format in the `id` attribute below:
+
+```json
+{
+  "data": {
+    "id": "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2",
+    "attributes": {
+      "reference_id": "your-own-id"
+    }
+  }
+}
+```
+
+When you create a new record, we will attach a unique ID to it in the
+<a href="https://en.wikipedia.org/wiki/Universally_unique_identifier" target="_uuid">UUID format</a>.
+
+Not all records use UUID's as ID, though. For instance, when we return data from
+Facebook or Google directly (see [#upstream](Upstream)), we will return the ID
+from the respective service, which is usually a string.
+
+You can also send your own customized `id` with the `reference_id` attribute.
+When a POST request has a `reference_id` equal to an already existing record,
+such record will be _updated_. If such record doesn't exist yet, a new one will
+be created. With that, you don't need to worry about storing the IDs created
+by us.
+
+## Formats
+
+**Attributes**
+
+```json
+{
+  "custom_attributes": [{
+    "label": "Custom attribute",
+    "identifier": "custom-attribute",
+    "value": "Some value"
+  }]
+}
+```
+
+All JSON keys must use
+<a href="https://en.wikipedia.org/wiki/Snake_case" target="_snakecase">snake_case</a>
+(underscores).
+
+## Currencies
+
+Currency is specified with
+<a href="https://en.wikipedia.org/wiki/ISO_4217" target="_iso4217">ISO 4217</a>.
+For instance, specify `BRL` for brazilian Real.
+
+## Dates
+
+```json
+{
+  "created_at": "2017-10-12T10:12:00Z"
+}
+```
+
+All dates are in the
+<a href="https://en.wikipedia.org/wiki/ISO_8601" target="_iso8601">ISO 8601</a>
+format (except where specified).

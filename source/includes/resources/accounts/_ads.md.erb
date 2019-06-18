@@ -1,5 +1,7 @@
 # Ads <span>beta</span>
 
+`/accounts/:account-id/ads`
+
 An **Ad** defines what is shown to users on platforms. One ad has a Creative.
 
 If you don't know what a Creative is: it's the format of the Ad. It can be
@@ -48,9 +50,11 @@ Relationships | &nbsp;
 
 ## Creating ads
 
-Use this endpoint to create new ads.
-
-> Definition <br> `POST /ads`
+<%= raw_partial(
+  "includes/resources/text_fragments/_endpoint_intro.md",
+  endpoint: 'POST /accounts/:account-id/ads',
+  purpose: 'create an ad'
+) %>
 
 <% table = [] %>
 <!-- required -->
@@ -73,12 +77,11 @@ Attributes | &nbsp;
 
 ## Updating ads
 
-This is how you can update an ad. We describe below what attributes can be
-updated.
-
-`PATCH /ads/:id`
-
-> Definition <br> `PATCH /ads/:id`
+<%= raw_partial(
+  "includes/resources/text_fragments/_endpoint_intro.md",
+  endpoint: 'POST /accounts/:account-id/ads/:id',
+  purpose: 'edit an ad'
+) %>
 
 <%= raw_partial("includes/resources/text_fragments/_put_intro.md") %>
 
@@ -101,17 +104,20 @@ Attributes | &nbsp;
 ## Reading ads
 
 <%= raw_partial(
-  "includes/resources/text_fragments/_get_id_standard.md",
-  resource_url_fragment: 'ads'
+  "includes/resources/text_fragments/_endpoint_intro.md",
+  endpoint: 'GET /accounts/:account-id/ads/:id',
+  purpose: 'read ads'
 ) %>
 
-**Resource within ad set:** to get ads that belong to one ad set,
-
-`GET /ad-sets/:ad-set-id/ads`
+<%= raw_partial(
+  "includes/resources/text_fragments/_get_standard.md",
+  resource_url_fragment: '/accounts/:account-id/ads',
+  beta: ' <span class="beta">BETA</span>'
+) %>
 
 <%= raw_partial(
-  "includes/resources/text_fragments/_get_filter_intro.md",
-  resource_url_fragment: 'ad-sets/:ad-set-id/ads'
+  "includes/resources/text_fragments/_get_id_standard.md",
+  resource_url_fragment: '/accounts/:account-id/ads',
 ) %>
 
 Accepted filters | &nbsp;

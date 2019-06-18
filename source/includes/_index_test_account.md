@@ -1,4 +1,4 @@
-# Test Account
+## Test Account
 
 All customers have a test account. This account has a lower rate limit,
 doesn't synchronize with 3rd-party services and doesn't count towards your

@@ -1,0 +1,33 @@
+service&lowbar;configurations
+<span class="attribute-explanation">object</span> |
+Configure the services for this account in this attribute.
+This is an object following the format
+in the example on the side.
+<br /><br />
+We support the following keys:
+<ul>
+  <li>
+    `facebook_ad_account_id`: set the Facebook Ad Account for this
+    account (`id` as value).
+    You can get this value from [this endpoint](#upstream-facebook-ad-accounts).
+  </li>
+  <li>
+    `facebook_page_id`: set the Facebook Page (`id` as value) for this account.
+    You can get this value from [this endpoint](#upstream-facebook-pages).
+  </li>
+  <li>
+    `google_ads_customer_id`: set the Google Ads/Adwords customer ID you want to
+    use with this account.
+    You can get this value from [this endpoint](#upstream-google-ads-customers).
+  </li>
+</ul>
+Use the [Upstream](#upstream) endpoint to get the information you need for these
+configurations.
+<br><br>
+If you want to remove configuration, use a `null` value for that key (e.g
+`{"service_configurations": {"facebook_page_id": null}}` will set the Facebook
+Page as null).
+If you don't include the key in the payload, the respective
+key's value won't be changed
+(e.g
+`{"service_configurations": {}}` will not change the Facebook Page).

@@ -1,7 +1,8 @@
-# Campaigns <span>beta</span>
+# Ad Sets <span>beta</span>
 
-A campaign defines how ads are going to be run. This is synchronized with
-3rd-party services like Facebook Ads and Google Ads.
+`/accounts/:account-id/ad-sets`
+
+An ad set groups together multiple ads. On Google it's called _Ad Groups_.
 
 **Daily Budget:** Facebook requires a daily budget per ad set, whereas
 Google, on the other hand, is not as granular and requires it on the entire
@@ -14,14 +15,14 @@ Below are the descriptions of the attributes for this resource.
 ```json
 {
   "data": {
-    "id": "49c23f61-2fec-5f1c-86dd-6afe36a1aef7",
-    "type": "ads",
+    "id": "35b87e73-3fec-4f2c-86dd-6afe36a0dbd2",
+    "type": "ad-sets",
     "attributes": {
-<%= partial("includes/resources/campaigns_examples/json_response_attributes.erb").rstrip %>
+<%= partial("includes/resources/ad_sets_examples/json_response_attributes.erb").rstrip %>
 <%= partial("includes/resources/generic_examples/json_response_service_configurations_empty.erb").rstrip %>
     },
     "relationships": {
-<%= partial("includes/resources/campaigns_examples/json_response_relationships.erb").rstrip %>
+<%= partial("includes/resources/ad_sets_examples/json_response_relationships.erb").rstrip %>
     }
   }
 }
@@ -29,43 +30,43 @@ Below are the descriptions of the attributes for this resource.
 
 <% table = [] %>
 <!-- required -->
-<% table << partial("includes/resources/campaigns_fields/service.erb") %>
 <% table << partial("includes/resources/generic_fields/state.erb") %>
+<% table << partial("includes/resources/ad_sets_fields/bids.erb") %>
+<% table << partial("includes/resources/ad_sets_fields/service_configurations.erb") %>
 <!-- optional -->
-<% table << partial("includes/resources/campaigns_fields/description.erb") %>
 <% table << partial("includes/resources/generic_fields/reference_id.erb") %>
-<% table << partial("includes/resources/generic_fields/service_configurations.erb") %>
 <% table << partial("includes/resources/generic_fields/title.erb") %>
 <!-- readonly -->
 <% table << partial("includes/resources/generic_fields/created_via.erb") %>
 <% table << partial("includes/resources/generic_fields/created_at.erb") %>
+<% table << partial("includes/resources/generic_fields/service_readonly.erb") %>
+
 Attributes | &nbsp;
 ------------------- | -----------
 <%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
 
 <% rels = [] %>
-<% rels << partial("includes/resources/campaigns_rels/ad_account.erb") %>
+<% rels << partial("includes/resources/ad_sets_rels/campaign.erb") %>
 Relationships | &nbsp;
 ------------------- | -----------
 <%= rels.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
 
-## Creating campaigns
+## Creating ad sets
 
-> Definition <br> `POST /campaigns`
-
-Use this endpoint to create new campaigns.
+<%= raw_partial(
+  "includes/resources/text_fragments/_endpoint_intro.md",
+  endpoint: 'POST /accounts/:account-id/ad-sets',
+  purpose: 'create a new ad set'
+) %>
 
 <% table = [] %>
 <!-- required -->
-<% table << partial("includes/resources/campaigns_fields/service.erb") %>
 <% table << partial("includes/resources/generic_fields/state.erb") %>
-
+<% table << partial("includes/resources/ad_sets_fields/bids.erb") %>
+<% table << partial("includes/resources/ad_sets_fields/service_configurations.erb") %>
 <!-- optional -->
-<% table << partial("includes/resources/campaigns_fields/description.erb") %>
 <% table << partial("includes/resources/generic_fields/reference_id.erb") %>
-<% table << partial("includes/resources/generic_fields/service_configurations.erb") %>
 <% table << partial("includes/resources/generic_fields/title.erb") %>
-
 Attributes | &nbsp;
 ---------- | -----------
 <%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
@@ -77,11 +78,13 @@ Attributes | &nbsp;
 <%= raw_partial("includes/resources/text_fragments/_note_creation_requires_rels.md") %>
 <%= raw_partial("includes/_reference_id_note_post.md") %>
 
-## Updating campaigns
+## Updating ad sets
 
-`PUT /campaigns/:id`
-
-> Definition <br> `PUT /campaigns/:id`
+<%= raw_partial(
+  "includes/resources/text_fragments/_endpoint_intro.md",
+  endpoint: 'PUT /accounts/:account-id/ad-sets',
+  purpose: 'edit an ad set'
+) %>
 
 <%= raw_partial("includes/resources/text_fragments/_put_intro.md") %>
 
@@ -91,9 +94,7 @@ Attributes | &nbsp;
 <% table << partial("includes/resources/generic_fields/state.erb") %>
 
 <!-- optional -->
-<% table << partial("includes/resources/campaigns_fields/description.erb") %>
 <% table << partial("includes/resources/generic_fields/reference_id.erb") %>
-<% table << partial("includes/resources/generic_fields/service_configurations.erb") %>
 <% table << partial("includes/resources/generic_fields/title.erb") %>
 
 Attributes | &nbsp;
@@ -107,29 +108,29 @@ Attributes | &nbsp;
 
 <%= raw_partial("includes/resources/text_fragments/_success_or_error.md") %>
 
-## Reading campaigns
+## Reading ad sets
+
+<%= raw_partial(
+  "includes/resources/text_fragments/_endpoint_intro.md",
+  endpoint: 'GET /accounts/:account-id/ad-sets*',
+  purpose: 'read ad sets'
+) %>
 
 <%= raw_partial(
   "includes/resources/text_fragments/_get_standard.md",
-  resource_url_fragment: 'campaigns'
+  resource_url_fragment: 'ad-sets'
 ) %>
 
 <%= raw_partial(
   "includes/resources/text_fragments/_get_id_standard.md",
-  resource_url_fragment: 'campaigns'
+  resource_url_fragment: 'ad-sets'
 ) %>
 
-<%= raw_partial(
-  "includes/resources/text_fragments/_get_filter_intro.md",
-  resource_url_fragment: 'ad-accounts/:ad-account-id/campaigns'
-) %>
+**Resource within campaign:** to get ad sets that belong to one campaign,
 
-Filters | &nbsp;
-------- | -----------
-<% table = [] %>
-<% table << partial("includes/resources/campaigns_fields/filter_service.erb") %>
-<%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
+`GET /campaigns/:campaign-id/ad-sets`
 
-## Deleting campaigns
+
+## Removing ad sets
 
 <%= raw_partial("includes/resources/text_fragments/_delete_via_state.md") %>
