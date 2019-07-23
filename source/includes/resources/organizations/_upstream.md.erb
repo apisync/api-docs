@@ -17,19 +17,21 @@ it provides:
 
 **Why use this endpoint?**
 
-You need to specify what is your Account's Facebook Page ID because when we
-generate ads, Facebook requires that we include your Page ID. The same applies
-to Google and a Customer ID.
+Facebook requires that we include your Page ID when we generate ads, so you need
+to let us know what is your Account's Facebook Page ID, a number that is unique
+to you.
 
-But what is that ID?
+The same happens with Google its Customer ID.
 
-This endpoint returns these pieces of data, and so you can update your accounts
-via `/accounts/:id`.
+_But what is your Page ID?_
+
+This endpoint returns these pieces of data so you can update your accounts
+via `PUT /accounts/:id`.
 
 **But why use this endpoint and not Facebook or Google directly?**
 
 For the same reason you're using APISync: so that you don't need to change your
-code when Facebook changes. Our API is architect to outlast their APIs.
+code when Facebook changes. Our API is architected to outlast their APIs.
 
 <aside class="notice">
   This endpoint is readonly. Before using this endpoint, you must login to the

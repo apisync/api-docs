@@ -10,17 +10,15 @@ available below, get in touch with us.
 
 These are the supported ad types and creative for Google.
 
-**expanded-text-ad**
-
 ```json
 {
   "creative": {
     "type": "expanded_text_ad",
-    "link": "http://ascendancestudio.com/homepage.html",
     "spec": {
       "headline_part1": "Ascendance",
       "headline_part2": "Kids Dance Class",
-      "description": "All Ages and Styles. Try a Free Class Today"
+      "description": "All Ages and Styles. Try a Free Class Today",
+      "link": "http://ascendancestudio.com/homepage.html"
     }
   }
 }
@@ -30,13 +28,29 @@ These are the supported ad types and creative for Google.
 <%= partial("includes/resources/text_fragments/ad_creative/google_expanded_text_ad.md.erb") %>
 </section>
 
-<% # partial("includes/resources/text_fragments/ad_creative/google_template_ad.md.erb") %>
+```json
+{
+  "creative": {
+    "type": "html5",
+    "spec": {
+      "entrypoint": "carousel/index.html",
+      "zip_url": "http://goo.gl/9Y7qI2",
+      "width": 300,
+      "height": 250,
+      "link": "http://nexus.com/homepage.html",
+      "display_url": "http://nexus.com"
+    }
+  }
+}
+```
+
+<section class="creative-details">
+<%= partial("includes/resources/text_fragments/ad_creative/google_html5.md.erb") %>
+</section>
 
 ### **Facebook Ads**
 
 These are the supported ad types and creative for Facebook.
-
-**image_data**
 
 ```json
 {
@@ -63,8 +77,6 @@ These are the supported ad types and creative for Facebook.
 <section class="creative-details">
 <%= partial("includes/resources/text_fragments/ad_creative/facebook_link_data.md.erb") %>
 </section>
-
-**video_data**
 
 ```json
 {
