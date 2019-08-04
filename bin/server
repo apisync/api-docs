@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Running bundle exec middleman server"
+bundle exec middleman server
