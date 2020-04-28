@@ -25,9 +25,11 @@ If you want to spend $60 per month, your daily budget will be $2. Note that
 your actual spending
 [could vary on a daily basis](https://support.google.com/google-ads/answer/1704443).
 
-Use the `service-configurations` key to set the daily budget for that campaign.
+Use the `service_configurations` key to set the daily budget for that campaign.
 
 - `daily-budget.amount` (require, integer): <%= raw_partial("includes/resources/generic_fields/_google_amount.md.erb") %>
+
+<!-- Bring back online later
 
 <h2 id="google-targeting-by-location">Targeting by Location</h2>
 
@@ -50,7 +52,7 @@ POST /campaigns
 On Google you can specify geographical location targeting
 on **campaigns** (not on ad sets, as Facebook requires)
 based on country, region, state and city by using the
-`service-configurations` object. See the example on the right.
+`service_configurations` object. See the example on the right.
 
 Each location
 [has an ID defined by Google](https://developers.google.com/adwords/api/docs/appendix/geotargeting),
@@ -71,3 +73,5 @@ countries like Brazil or China.
 **Custom Locations: Latitude and Longitude and Addresses**
 
 As of this writing, Google doesn't support passing lat/lon or addresses.
+
+-->

@@ -7,6 +7,7 @@ Find below specific instructions for Facebook Ads.
 ```
 POST /ad-sets
 ```
+
 ```json
 {
   "data": {
@@ -23,10 +24,10 @@ POST /ad-sets
 Facebook [specifies a daily budget](https://developers.facebook.com/docs/marketing-api/reference/ad-campaign) and it needs to be defined on each **ad set**.
 If you want to spend $60 per month, your daily budget will be $2.
 
-Use the `service-configurations` key to set the daily budget for that ad set.
+Use the `service_configurations` key to set the daily budget for that ad set.
 
-- `daily-budget.amount` (require, integer): <%= raw_partial("includes/resources/generic_fields/_facebook_amount.md.erb") %>
-- `daily-budget.billing-event` (require, string): as per
+- `daily_budget` (require, integer): <%= raw_partial("includes/resources/generic_fields/_facebook_amount.md.erb") %>
+- `billing_event` (require, string): as per
 [Facebook specs](https://developers.facebook.com/docs/marketing-api/reference/ad-campaign), it can be
 APP_INSTALLS, CLICKS, IMPRESSIONS, LINK_CLICKS, NONE, OFFER_CLAIMS, PAGE_LIKES, POST_ENGAGEMENT, VIDEO_VIEWS, THRUPLAY.
 
@@ -36,6 +37,7 @@ APP_INSTALLS, CLICKS, IMPRESSIONS, LINK_CLICKS, NONE, OFFER_CLAIMS, PAGE_LIKES, 
 ```
 POST /ad-sets
 ```
+
 ```json
 {
   "data": {
@@ -51,7 +53,7 @@ POST /ad-sets
 
 The same ads that go to Facebook can be configured to go to Instagram,
 Messenger and more. To do so, when creating an **ad set** use the key
-`service-configurations.publisher-platforms`, as in the example on the right,
+`service_configurations.publisher_platforms`, as in the example on the right,
 and pass as value the plaforms you want the ads in that ad-set to show up.
 
 The accepted values can be found on
@@ -81,10 +83,12 @@ POST /ad-sets
 
 You are required by Facebook to specify a geographical targeting location
 for every **ad set**. It is based on country, region, city or zipcode by using
-the `service-configurations` key. See the example on the right.
+the `service_configurations` key. See the example on the right.
 
 All values described below can be found with Facebook's API:
 [https://developers.facebook.com/docs/marketing-api/targeting-search#geo](https://developers.facebook.com/docs/marketing-api/targeting-search#geo).
+This page contains the values you can use. The values sent to us will be sent directly to
+Facebook.
 
 **Countries**
 
@@ -92,7 +96,7 @@ Use the `countries` key and pass a list of country _keys_, as in the example.
 
 For instance, on Facebook
 the key for United Kingdom is `{"key": "GB"}` according to the docs above. They
-use 2 char for all countries, so US stands for United States, BR for Brazil and
+use 2 char for all countries, so `US` stands for United States, `BR` for Brazil and
 so on.
 
 **Regions**
