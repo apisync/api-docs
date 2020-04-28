@@ -2,7 +2,7 @@
 lock "3.8.2"
 
 set :rbenv_type, :system
-set :rbenv_ruby, '2.3.1'
+set :rbenv_ruby, '2.6.0'
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_path, "/home/#{ENV.fetch('APISYNC_DEPLOY_USER')}/.rbenv"
 
