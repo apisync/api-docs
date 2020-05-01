@@ -131,6 +131,7 @@ Attributes | &nbsp;
   resource_url_fragment: '/accounts/:account-id/campaigns'
 ) %>
 
+<!--
 <%= raw_partial(
   "includes/resources/text_fragments/_get_filter_intro.md",
   resource_url_fragment: '/accounts/:account-id/campaigns'
@@ -141,6 +142,8 @@ Filters | &nbsp;
 <% table = [] %>
 <% table << partial("includes/resources/campaigns_fields/filter_service.erb") %>
 <%= table.map { |r| r.gsub(/\n/, " ") }.join("\n") %>
+
+-->
 
 ## Deleting campaigns
 
