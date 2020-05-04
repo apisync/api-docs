@@ -3,6 +3,9 @@
 This type of ad allows you to add an image alongside a title, a description and
 a button.
 
+With `link_data`, you can create ads with creatives that are single images as
+well as carousel and more. For example, for a single image:
+
 <%= image_tag "creatives/fbok_link_data.png",
   class: 'fbok creative link-data' %>
 
@@ -21,3 +24,38 @@ to other pages.
 - `link_data.call_to_action.value.link_caption` (string): This is the
 URL that will show up to the user.
 This has to be similar to `link_data.link`.
+
+For **carousel**, the ads with more than one image, it's a little bit different.
+It's still `link_data`, but you need to send the `link_data.child_attachments`
+array and omit `link_data.message` and `link_data.description`. You should also
+omit `call_to_action`, and instead _include_ `child_attachments` as in the next
+example. If you don't omit those fields, Facebook will return errors.
+
+```json
+{
+  "spec": {
+    "link_data": {
+      "link": "https://example.com",
+      "message": "The main body of the post.",
+      "child_attachments": [{
+        "link": "https://example.com/page1",
+        "picture": "https://example/picture1.png",
+        "name": "Slide 1",
+        "description": "Description 1",
+      }, {
+        "link": "https://example.com/page2",
+        "picture": "https://example/picture2.png",
+        "name": "Slide 2",
+        "description": "Description 2",
+      }]
+    }
+  }
+}
+```
+
+<br />
+
+For more details of what you can send, use Facebook's official docs at
+<a href="https://developers.facebook.com/docs/marketing-api/guides/videoads#carousel">
+https://developers.facebook.com/docs/marketing-api/guides/videoads#carousel
+</a>.
