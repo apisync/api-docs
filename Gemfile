@@ -2,9 +2,11 @@ ruby '2.6.0'
 source 'https://rubygems.org'
 
 group :development do
+  gem 'bcrypt_pbkdf'
   gem 'capistrano'
   gem 'capistrano-bundler'
   gem 'capistrano-rbenv'
+  gem 'rbnacl', '< 5.0'
 end
 
 # Middleman

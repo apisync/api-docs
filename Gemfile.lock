@@ -26,6 +26,7 @@ GEM
     autoprefixer-rails (6.6.1)
       execjs
     backports (3.6.8)
+    bcrypt_pbkdf (1.0.1)
     builder (3.2.3)
     capistrano (3.8.2)
       airbrussh (>= 1.0.0)
@@ -156,6 +157,8 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
+    rbnacl (4.0.2)
+      ffi
     redcarpet (3.4.0)
     ref (2.0.0)
     rouge (2.0.7)
@@ -198,6 +201,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt_pbkdf
   capistrano
   capistrano-bundler
   capistrano-rbenv
@@ -209,6 +213,7 @@ DEPENDENCIES
   nokogiri (~> 1.6.8)
   pry
   rake
+  rbnacl (< 5.0)
   redcarpet (~> 3.4.0)
   rouge (~> 2.0.5)
   sassc
